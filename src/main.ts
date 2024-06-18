@@ -10,7 +10,7 @@ import { injectResponsiveStorage } from "@/utils/responsive"
 
 import Table from "@pureadmin/table"
 // import PureDescriptions from "@pureadmin/descriptions";
-
+import * as echarts from "echarts"
 // 引入重置样式
 import "./style/reset.scss"
 // 导入公共样式
@@ -49,7 +49,8 @@ import "tippy.js/dist/tippy.css"
 import "tippy.js/themes/light.css"
 import VueTippy from "vue-tippy"
 app.use(VueTippy)
-
+// 引入echarts 然后可以在组件种使用useEcharts方法
+app.config.globalProperties.$echarts = echarts
 getPlatformConfig(app).then(async config => {
     setupStore(app)
     app.use(router)

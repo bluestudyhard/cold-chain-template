@@ -12,7 +12,7 @@ const permissionRouter = {
         title: "权限管理",
         icon: "ep:lollipop",
         rank: 10,
-        showLink: false
+        showLink: true
     },
     children: [
         {
