@@ -1,0 +1,262 @@
+[
+  {
+    "provinceName": "内蒙古",
+    "value": 1,
+    "coord": {
+      "boxName": "内蒙古自治区阿拉善盟阿拉善右旗阿拉腾朝格苏木达格巴音巴润敖格钦",
+      "value": [
+        "101.285",
+        "39.930"
+      ]
+    },
+    "battery": "94.858",
+    "temperature": "5.062"
+  },
+  {
+    "provinceName": "山西",
+    "value": 1,
+    "coord": {
+      "boxName": "山西省太原市万柏林区王化街道003乡道",
+      "value": [
+        "112.314",
+        "37.907"
+      ]
+    },
+    "battery": "60.789",
+    "temperature": "-24.108"
+  },
+  {
+    "provinceName": "湖北",
+    "value": 1,
+    "coord": {
+      "boxName": "湖北省荆州市沙市区岑河镇王三线",
+      "value": [
+        "112.435",
+        "30.237"
+      ]
+    },
+    "battery": "50.042",
+    "temperature": "-18.580"
+  },
+  {
+    "provinceName": "内蒙古",
+    "value": 1,
+    "coord": {
+      "boxName": "内蒙古自治区乌海市海勃湾区千里山镇蓝翔驾校(北门)",
+      "value": [
+        "106.793",
+        "39.740"
+      ]
+    },
+    "battery": "47.363",
+    "temperature": "-15.172"
+  },
+  {
+    "provinceName": "重庆",
+    "value": 1,
+    "coord": {
+      "boxName": "重庆市北碚区三圣镇风门村",
+      "value": [
+        "106.654",
+        "29.870"
+      ]
+    },
+    "battery": "83.201",
+    "temperature": "3.011"
+  },
+  {
+    "provinceName": "安徽",
+    "value": 1,
+    "coord": {
+      "boxName": "安徽省安庆市太湖县城西乡G50沪渝高速",
+      "value": [
+        "116.248",
+        "30.345"
+      ]
+    },
+    "battery": "58.009",
+    "temperature": "-16.664"
+  },
+  {
+    "provinceName": "陕西",
+    "value": 1,
+    "coord": {
+      "boxName": "陕西省延安市子长市李家岔镇后护林沟",
+      "value": [
+        "109.323",
+        "37.244"
+      ]
+    },
+    "battery": "43.589",
+    "temperature": "4.300"
+  },
+  {
+    "provinceName": "湖南",
+    "value": 1,
+    "coord": {
+      "boxName": "湖南省邵阳市洞口县月溪镇石垄溪",
+      "value": [
+        "110.464",
+        "27.097"
+      ]
+    },
+    "battery": "52.721",
+    "temperature": "-14.077"
+  },
+  {
+    "provinceName": "福建",
+    "value": 1,
+    "coord": {
+      "boxName": "福建省南平市建瓯市房道镇凉伞亭",
+      "value": [
+        "118.219",
+        "26.970"
+      ]
+    },
+    "battery": "24.820",
+    "temperature": "1.083"
+  },
+  {
+    "provinceName": "河南",
+    "value": 1,
+    "coord": {
+      "boxName": "河南省驻马店市平舆县郭楼街道平舆县惠民肉牛养殖专业合作社",
+      "value": [
+        "114.611",
+        "33.020"
+      ]
+    },
+    "battery": "34.907",
+    "temperature": "-18.383"
+  },
+  {
+    "provinceName": "江西",
+    "value": 1,
+    "coord": {
+      "boxName": "江西省宜春市宜丰县新昌镇工信大道63号",
+      "value": [
+        "114.868",
+        "28.377"
+      ]
+    },
+    "battery": "85.786",
+    "temperature": "-14.799"
+  },
+  {
+    "provinceName": "青海",
+    "value": 1,
+    "coord": {
+      "boxName": "青海省海东市乐都区达拉土族乡松花顶",
+      "value": [
+        "102.310",
+        "36.690"
+      ]
+    },
+    "battery": "71.020",
+    "temperature": "6.278"
+  },
+  {
+    "provinceName": "河南",
+    "value": 1,
+    "coord": {
+      "boxName": "河南省周口市项城市光武街道吉祥高端别墅门",
+      "value": [
+        "114.854",
+        "33.422"
+      ]
+    },
+    "battery": "0.954",
+    "temperature": "-18.888"
+  },
+  {
+    "provinceName": "河北",
+    "value": 1,
+    "coord": {
+      "boxName": "河北省邢台市临城县赵庄乡黄花沟",
+      "value": [
+        "114.116",
+        "37.478"
+      ]
+    },
+    "battery": "86.595",
+    "temperature": "-15.555"
+  },
+  {
+    "provinceName": "湖北",
+    "value": 1,
+    "coord": {
+      "boxName": "湖北省仙桃市西流河镇车路村村委会",
+      "value": [
+        "113.705",
+        "30.273"
+      ]
+    },
+    "battery": "15.998",
+    "temperature": "-17.245"
+  },
+  {
+    "provinceName": "重庆",
+    "value": 1,
+    "coord": {
+      "boxName": "重庆市忠县复兴镇石垫路",
+      "value": [
+        "108.106",
+        "30.290"
+      ]
+    },
+    "battery": "69.201",
+    "temperature": "-15.134"
+  },
+  {
+    "provinceName": "安徽",
+    "value": 1,
+    "coord": {
+      "boxName": "安徽省安庆市岳西县主簿镇寨家河",
+      "value": [
+        "116.485",
+        "31.048"
+      ]
+    },
+    "battery": "51.528",
+    "temperature": "-14.451"
+  },
+  {
+    "provinceName": "内蒙古",
+    "value": 1,
+    "coord": {
+      "boxName": "内蒙古自治区鄂尔多斯市鄂托克旗乌兰镇哈沙图小组",
+      "value": [
+        "108.187",
+        "39.282"
+      ]
+    },
+    "battery": "26.438",
+    "temperature": "-18.096"
+  },
+  {
+    "provinceName": "浙江",
+    "value": 1,
+    "coord": {
+      "boxName": "浙江省金华市东阳市画水镇平坞村",
+      "value": [
+        "120.151",
+        "29.127"
+      ]
+    },
+    "battery": "44.284",
+    "temperature": "7.054"
+  },
+  {
+    "provinceName": "四川",
+    "value": 1,
+    "coord": {
+      "boxName": "四川省阿坝藏族羌族自治州黑水县芦花镇",
+      "value": [
+        "102.889",
+        "32.332"
+      ]
+    },
+    "battery": "8.997",
+    "temperature": "4.696"
+  }
+]

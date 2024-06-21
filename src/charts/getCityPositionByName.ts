@@ -38,3 +38,38 @@ const positionArr = [
 export function getCityPositionByName(name) {
     return positionArr.find(item => item.name === name)
 }
+function generateMockData(province, lonRange, latRange, count = 5) {
+    const data = []
+    for (let i = 0; i < count; i++) {
+        const lon = Math.random() * (lonRange[1] - lonRange[0]) + lonRange[0]
+        const lat = Math.random() * (latRange[1] - latRange[0]) + latRange[0]
+        data.push({
+            name: `${province} mock point ${i + 1}`,
+            value: [lon.toFixed(6), lat.toFixed(6)]
+        })
+    }
+    return data
+}
+
+export const mockCityData = [
+    ...generateMockData(
+        "广东省",
+        [109.664816, 117.303484],
+        [20.223273, 25.519951]
+    ),
+    ...generateMockData(
+        "广西壮族自治区",
+        [104.446538, 112.05675],
+        [20.902306, 26.388528]
+    ),
+    ...generateMockData(
+        "贵州",
+        [103.599417, 109.556069],
+        [24.620914, 29.224344]
+    ),
+    ...generateMockData(
+        "黑龙江",
+        [121.183134, 135.088511],
+        [43.422993, 53.560901]
+    )
+]

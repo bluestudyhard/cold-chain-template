@@ -7,6 +7,11 @@
 <template>
     <div class="container">
         <div ref="chartRef" style="width: 100%; height: 90vh" />
+        <TableChart
+            v-model="dialogVisible"
+            :overViewTitle="overViewTitle"
+            :dialogInfo="dialogInfo"
+        />
     </div>
 </template>
 
@@ -14,25 +19,35 @@
 import { useECharts } from "@pureadmin/utils"
 const chartRef = ref<HTMLDivElement | null>(null)
 const { setOptions, echarts } = useECharts(chartRef)
-import { getCityPositionByName } from "@/charts/getCityPositionByName"
+
+import type { BoxMessageData, initMapsData, VaccineData } from "@/types/index"
+import { useOverViewStore } from "@/store/modules/overView"
 import "@/charts/china.js"
-const mockData = ref([
-    { name: "北京", value: 14400 },
-    { name: "天津", value: 200 },
-    { name: "河南", value: 300 },
-    { name: "广西", value: 300 },
-    { name: "广东", value: 300 },
-    { name: "河北", value: 300 }
-])
-const data = ref([])
-onMounted(() => {
-    data.value = mockData.value.map(item => {
-        return {
-            name: item.name,
-            value: item.value,
-            coord: getCityPositionByName(item.name)
-        }
-    })
+const store = useOverViewStore()
+
+const initMapsData = ref<initMapsData[]>([])
+async function init() {
+    await store._getOverViewData()
+    await store._getArrivalCitysData()
+    await store._getVaccineData()
+    await store._getBoxMessageData()
+    // await store._getPatchLocationData("101.285,39.930")
+    await store._getInitMapsData()
+    await store._getVaccineData()
+    store.provinceNameFilter()
+    initMapsData.value = store.getOverViewMapsData
+    VaccineData.value = store.getVaccines
+    console.log(initMapsData.value, "initMapsData")
+    console.log(VaccineData.value, "VaccineData")
+}
+
+/**数据区 */
+const overViewTitle = ref("数据概览")
+const dialogVisible = ref(false)
+const dialogInfo = ref<initMapsData[]>()
+const VaccineData = ref<VaccineData[]>([])
+onMounted(async () => {
+    await init()
     setOptions(
         {
             backgroundColor: "transparent", // 设置背景色透明
@@ -72,7 +87,7 @@ onMounted(() => {
                     tooltip: {
                         show: true,
                         formatter: params => {
-                            return params.name + ":" + params.value
+                            return params.name + ":" + (params.value || 0)
                             // return `<div style="color: #fff; background-color: #333; padding: 10px;"><h4 style="margin: 0;">${params.name}</h4></div>`
                         }
                     },
@@ -121,7 +136,7 @@ onMounted(() => {
                         disabled: false, // 开启高亮
                         label: {
                             align: "center",
-                            color: "#ffffff"
+                            color: "#F0F2F5"
                         },
                         itemStyle: {
                             color: "#ffffff",
@@ -129,34 +144,51 @@ onMounted(() => {
                         }
                     },
                     z: 2,
-                    data: data.value
+                    data: initMapsData.value.map(item => {
+                        return {
+                            name: item.provinceName,
+                            value: item.value
+                        }
+                    })
                 },
                 {
                     type: "scatter",
                     coordinateSystem: "geo",
                     symbol: "pin",
-                    symbolSize: [50, 50],
+                    symbolSize: 25,
                     label: {
-                        show: true,
+                        show: false,
                         color: "#fff",
                         formatter: "{b}"
                     },
                     itemStyle: {
-                        color: "#e30707" //标志颜色
+                        color: "#6E48D1" //标志颜色
                     },
                     z: 2,
-                    data: data.value
+                    data: initMapsData.value.map(item => {
+                        return {
+                            name: item.coord.boxName,
+                            value: item.coord.value
+                        }
+                    }),
+                    silent: true
                 }
             ]
         },
         {
             name: "click",
             callback: (params: any) => {
-                console.log(params)
+                overViewTitle.value = params.name
+                dialogVisible.value = true
+                dialogInfo.value = initMapsData.value.filter(
+                    item => item.provinceName === params.name
+                )
+                console.log(dialogInfo.value, "dialogInfo")
             }
         }
     )
 })
+
 onUnmounted(() => {
     chartRef.value = null
 })
