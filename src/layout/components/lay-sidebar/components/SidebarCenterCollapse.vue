@@ -1,53 +1,52 @@
 <script setup lang="ts">
-import { computed } from "vue"
-import { useGlobal } from "@pureadmin/utils"
-import { useNav } from "@/layout/hooks/useNav"
-
-import ArrowLeft from "@iconify-icons/ri/arrow-left-double-fill"
+import { computed } from 'vue'
+import { useGlobal } from '@pureadmin/utils'
+import ArrowLeft from '@iconify-icons/ri/arrow-left-double-fill'
+import { useNav } from '@/layout/hooks/useNav'
 
 interface Props {
-    isActive: boolean
+  isActive: boolean
 }
 
 withDefaults(defineProps<Props>(), {
-    isActive: false
+  isActive: false,
 })
+
+const emit = defineEmits<{
+  (e: 'toggleClick'): void
+}>()
 
 const { tooltipEffect } = useNav()
 
 const iconClass = computed(() => {
-    return ["w-[16px]", "h-[16px]"]
+  return ['w-[16px]', 'h-[16px]']
 })
 
 const { $storage } = useGlobal<GlobalPropertiesApi>()
 const themeColor = computed(() => $storage.layout?.themeColor)
 
-const emit = defineEmits<{
-    (e: "toggleClick"): void
-}>()
-
-const toggleClick = () => {
-    emit("toggleClick")
+function toggleClick() {
+  emit('toggleClick')
 }
 </script>
 
 <template>
-    <div
-        v-tippy="{
-            content: isActive ? '点击折叠' : '点击展开',
-            theme: tooltipEffect,
-            hideOnClick: 'toggle',
-            placement: 'right'
-        }"
-        class="center-collapse"
-        @click="toggleClick"
-    >
-        <IconifyIconOffline
-            :icon="ArrowLeft"
-            :class="[iconClass, themeColor === 'light' ? '' : 'text-primary']"
-            :style="{ transform: isActive ? 'none' : 'rotateY(180deg)' }"
-        />
-    </div>
+  <div
+    v-tippy="{
+      content: isActive ? '点击折叠' : '点击展开',
+      theme: tooltipEffect,
+      hideOnClick: 'toggle',
+      placement: 'right',
+    }"
+    class="center-collapse"
+    @click="toggleClick"
+  >
+    <IconifyIconOffline
+      :icon="ArrowLeft"
+      :class="[iconClass, themeColor === 'light' ? '' : 'text-primary']"
+      :style="{ transform: isActive ? 'none' : 'rotateY(180deg)' }"
+    />
+  </div>
 </template>
 
 <style lang="scss" scoped>

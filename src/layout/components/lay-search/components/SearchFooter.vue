@@ -1,36 +1,36 @@
 <script setup lang="ts">
-import { useNav } from "@/layout/hooks/useNav"
-import MdiKeyboardEsc from "@/assets/svg/keyboard_esc.svg?component"
-import EnterOutlined from "@/assets/svg/enter_outlined.svg?component"
-import ArrowUpLine from "@iconify-icons/ri/arrow-up-line"
-import ArrowDownLine from "@iconify-icons/ri/arrow-down-line"
+import ArrowUpLine from '@iconify-icons/ri/arrow-up-line'
+import ArrowDownLine from '@iconify-icons/ri/arrow-down-line'
+import { useNav } from '@/layout/hooks/useNav'
+import MdiKeyboardEsc from '@/assets/svg/keyboard_esc.svg?component'
+import EnterOutlined from '@/assets/svg/enter_outlined.svg?component'
 
 withDefaults(defineProps<{ total: number }>(), {
-    total: 0
+  total: 0,
 })
 
 const { device } = useNav()
 </script>
 
 <template>
-    <div class="search-footer text-[#333] dark:text-white">
-        <span class="search-footer-item">
-            <EnterOutlined class="icon" />
-            确认
-        </span>
-        <span class="search-footer-item">
-            <IconifyIconOffline :icon="ArrowUpLine" class="icon" />
-            <IconifyIconOffline :icon="ArrowDownLine" class="icon" />
-            切换
-        </span>
-        <span class="search-footer-item">
-            <MdiKeyboardEsc class="icon" />
-            关闭
-        </span>
-        <p v-if="device !== 'mobile' && total > 0" class="search-footer-total">
-            {{ `共 ${total} 项` }}
-        </p>
-    </div>
+  <div class="search-footer text-[#333] dark:text-white">
+    <span class="search-footer-item">
+      <EnterOutlined class="icon" />
+      确认
+    </span>
+    <span class="search-footer-item">
+      <IconifyIconOffline :icon="ArrowUpLine" class="icon" />
+      <IconifyIconOffline :icon="ArrowDownLine" class="icon" />
+      切换
+    </span>
+    <span class="search-footer-item">
+      <MdiKeyboardEsc class="icon" />
+      关闭
+    </span>
+    <p v-if="device !== 'mobile' && total > 0" class="search-footer-total">
+      {{ `共 ${total} 项` }}
+    </p>
+  </div>
 </template>
 
 <style lang="scss" scoped>

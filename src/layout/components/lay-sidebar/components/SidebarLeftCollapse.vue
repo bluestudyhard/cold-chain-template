@@ -1,60 +1,59 @@
 <script setup lang="ts">
-import { computed } from "vue"
-import { useGlobal } from "@pureadmin/utils"
-import { useNav } from "@/layout/hooks/useNav"
-
-import MenuFold from "@iconify-icons/ri/menu-fold-fill"
+import { computed } from 'vue'
+import { useGlobal } from '@pureadmin/utils'
+import MenuFold from '@iconify-icons/ri/menu-fold-fill'
+import { useNav } from '@/layout/hooks/useNav'
 
 interface Props {
-    isActive: boolean
+  isActive: boolean
 }
 
 withDefaults(defineProps<Props>(), {
-    isActive: false
+  isActive: false,
 })
+
+const emit = defineEmits<{
+  (e: 'toggleClick'): void
+}>()
 
 const { tooltipEffect } = useNav()
 
 const iconClass = computed(() => {
-    return [
-        "ml-4",
-        "mb-1",
-        "w-[16px]",
-        "h-[16px]",
-        "inline-block",
-        "align-middle",
-        "cursor-pointer",
-        "duration-[100ms]"
-    ]
+  return [
+    'ml-4',
+    'mb-1',
+    'w-[16px]',
+    'h-[16px]',
+    'inline-block',
+    'align-middle',
+    'cursor-pointer',
+    'duration-[100ms]',
+  ]
 })
 
 const { $storage } = useGlobal<GlobalPropertiesApi>()
 const themeColor = computed(() => $storage.layout?.themeColor)
 
-const emit = defineEmits<{
-    (e: "toggleClick"): void
-}>()
-
-const toggleClick = () => {
-    emit("toggleClick")
+function toggleClick() {
+  emit('toggleClick')
 }
 </script>
 
 <template>
-    <div class="left-collapse">
-        <IconifyIconOffline
-            v-tippy="{
-                content: isActive ? '点击折叠' : '点击展开',
-                theme: tooltipEffect,
-                hideOnClick: 'toggle',
-                placement: 'right'
-            }"
-            :icon="MenuFold"
-            :class="[iconClass, themeColor === 'light' ? '' : 'text-primary']"
-            :style="{ transform: isActive ? 'none' : 'rotateY(180deg)' }"
-            @click="toggleClick"
-        />
-    </div>
+  <div class="left-collapse">
+    <IconifyIconOffline
+      v-tippy="{
+        content: isActive ? '点击折叠' : '点击展开',
+        theme: tooltipEffect,
+        hideOnClick: 'toggle',
+        placement: 'right',
+      }"
+      :icon="MenuFold"
+      :class="[iconClass, themeColor === 'light' ? '' : 'text-primary']"
+      :style="{ transform: isActive ? 'none' : 'rotateY(180deg)' }"
+      @click="toggleClick"
+    />
+  </div>
 </template>
 
 <style lang="scss" scoped>

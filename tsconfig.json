@@ -1,43 +1,44 @@
 {
-    "compilerOptions": {
-        "target": "ESNext",
-        "module": "ESNext",
-        "moduleResolution": "bundler",
-        "strict": false,
-        "jsx": "preserve",
-        "importHelpers": true,
-        "experimentalDecorators": true,
-        "strictFunctionTypes": false,
-        "skipLibCheck": true,
-        "esModuleInterop": true,
-        "isolatedModules": true,
-        "allowSyntheticDefaultImports": true,
-        "forceConsistentCasingInFileNames": true,
-        "sourceMap": true,
-        "baseUrl": ".",
-        "allowJs": false,
-        "resolveJsonModule": true,
-        "lib": ["ESNext", "DOM"],
-        "paths": {
-            "@/*": ["src/*"],
-            "@build/*": ["build/*"]
-        },
-        "types": [
-            "node",
-            "vite/client",
-            "element-plus/global",
-            "@pureadmin/table/volar",
-            "@pureadmin/descriptions/volar"
-        ]
+  "compilerOptions": {
+    "target": "ESNext",
+    "jsx": "preserve",
+    "lib": ["ESNext", "DOM"],
+    "experimentalDecorators": true,
+    "baseUrl": ".",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "paths": {
+      "@/*": ["src/*"],
+      "@build/*": ["build/*"]
     },
-    "include": [
-        "mock/*.ts",
-        "src/**/*.ts",
-        "src/**/*.tsx",
-        "src/**/*.vue",
-        "types/*.d.ts",
-        "vite.config.ts",
-        "auto-imports.d.ts"
-, "src/charts/china.js"    ],
-    "exclude": ["dist", "**/*.js", "node_modules"]
+    "resolveJsonModule": true,
+    "types": [
+      "node",
+      "vite/client",
+      "element-plus/global",
+      "@pureadmin/table/volar",
+      "@pureadmin/descriptions/volar"
+    ],
+    "allowJs": false,
+    "strict": false,
+    "strictFunctionTypes": false,
+    "importHelpers": true,
+    "sourceMap": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "isolatedModules": true,
+    "skipLibCheck": true
+  },
+  "include": [
+    "mock/*.ts",
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue",
+    "types/*.d.ts",
+    "vite.config.ts",
+    "auto-imports.d.ts",
+    "src/charts/china.js"
+  ],
+  "exclude": ["dist", "**/*.js", "node_modules"]
 }

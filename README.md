@@ -9,7 +9,7 @@
 
 ## 关于pureAdmin的文档
 
-[点我查看 vue-pure-admin 文档](https://pure-admin.github.io/pure-admin-doc)  
+[点我查看 vue-pure-admin 文档](https://pure-admin.github.io/pure-admin-doc)
 [点我查看 @pureadmin/utils 文档](https://pure-admin-utils.netlify.app)
 
 ## 开发说明
