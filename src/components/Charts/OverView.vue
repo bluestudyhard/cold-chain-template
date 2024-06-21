@@ -19,7 +19,7 @@ const initMapsData = ref<InitMapsData[]>([])
 /** 数据区 */
 const overViewTitle = ref('数据概览')
 const dialogVisible = ref(false)
-const dialogInfo = ref<InitMapsData[]>()
+const dialogInfo = ref<InitMapsData[]>([])
 const vaccineData = ref<VaccineData[]>([])
 
 async function init() {
@@ -31,8 +31,8 @@ async function init() {
   await store._getInitMapsData()
   await store._getVaccineData()
   store.provinceNameFilter()
-  initMapsData.value = store.getOverViewMapsData
-  vaccineData.value = store.getVaccines
+  initMapsData.value = store.getOverViewMapsData()
+  vaccineData.value = store.getVaccines()
   console.log(initMapsData.value, 'initMapsData')
   console.log(vaccineData.value, 'VaccineData')
 }

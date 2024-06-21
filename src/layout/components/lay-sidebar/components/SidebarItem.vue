@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import path from 'node:path'
 import {
   type CSSProperties,
   type PropType,
@@ -96,10 +95,6 @@ function resolvePath(routePath) {
   const httpReg = /^https?:\/\//
   if (httpReg.test(routePath) || httpReg.test(props.basePath)) {
     return routePath || props.basePath
-  }
-  else {
-    // 使用path.posix.resolve替代path.resolve 避免windows环境下使用electron出现盘符问题
-    return path.posix.resolve(props.basePath, routePath)
   }
 }
 </script>

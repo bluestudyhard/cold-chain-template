@@ -1,18 +1,23 @@
-<h1>cold-chain 冷链综合实训</h1>
+# cold-chain 冷链综合实训
 
-## 需求
+[需求文档之一](https://kdocs.cn/l/cbcQiFxOf7pp)
 
-[前端需求暂定](https://www.yuque.com/g/melingkk/rw3sli/hsgff2whltgaki1h/collaborator/join?token=ha9F4GQeZg0euuzh&source=doc_collaborator&goto=%2Fmelingkk%2Frw3sli%2Fhsgff2whltgaki1h%2Fedit#)
-邀请你共同编辑文档《综合实训需求》
-<br/>
-[金山](https://kdocs.cn/l/cbcQiFxOf7pp)
+启动：
 
-## 关于pureAdmin的文档
+```bash
+# 启动模拟的后端
+pnpm serve
+
+# 前端
+pnpm dev
+```
+
+### 关于pureAdmin的文档
 
 [点我查看 vue-pure-admin 文档](https://pure-admin.github.io/pure-admin-doc)
 [点我查看 @pureadmin/utils 文档](https://pure-admin-utils.netlify.app)
 
-## 开发说明
+### 开发说明
 
 -   代码规范，无需多言，eslint一件格式化就行，路由文件夹+index，命名最好用gpt，组件为了方便可以直接在xx目录下双驼峰
 -   基本的路由，工具什么的都配好了，如果需要添加的话是在/src/router目录下的module里添加配置文件，详情看文档
