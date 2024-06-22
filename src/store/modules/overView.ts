@@ -22,31 +22,20 @@ export const useOverViewStore = defineStore('chain-cold-overView', () => {
   const arrivalCitys = ref<string[]>([])
 
   const vaccines = ref<VaccineData[]>([])
-  const boxMessages = ref<BoxMessages[]>([])
 
-  async function _getPatchNames(location: string) {
-    try {
-      const locationInfo = await getLocationData(location)
-      if (locationInfo.status === '1') {
-        return locationInfo.regeocode.formatted_address
-      }
-    }
-    catch (error) {
-      console.log('error', error)
-    }
-  }
+  const cityData = new Map<string, number>()
 
   async function _getLocationData(location: string) {
-    try {
-      console.log('getLocationData', location)
-      const locationInfo = await getLocationData(location)
+    const locationInfo = await getLocationData(location)
 
-      return locationInfo.regeocode
+    if (!locationInfo?.formatted_address) {
+      return {
+        addressComponent: { province: '未知' },
+        formatted_address: '未知',
+      }
     }
-    catch (error) {
-      console.error('error', error)
-      return null
-    }
+
+    return locationInfo
   }
 
   async function getInitData() {
@@ -59,41 +48,41 @@ export const useOverViewStore = defineStore('chain-cold-overView', () => {
    * @description: 获取所有的盒子数据
    */
   async function getBoxMessageData() {
-    boxMessages.value = await fetchBoxMessages()
-  }
+    const data = await fetchBoxMessages()
 
-  /**
-   * @description: 初始化echarts地图数据
-   */
-  async function initMapsData() {
-    console.log('boxMessages', toRaw(boxMessages.value))
-    overViewMapsData.value = []
+    console.log('boxMessages', data)
 
-    for (const item of boxMessages.value) {
-      const data = await _getLocationData(`${item.longitude},${item.latitude}`)
-
-      if (!data)
-        continue
-
-      const provinceName = data.addressComponent.province || '未知'
-      const addressName = data.formatted_address || '未知'
-
-      const mapData: InitMapsData = {
-        provinceName: provinceName.replace(/省|市|自治区/g, ''),
-        value: 1,
-        boxId: item.boxId,
-        coord: {
-          boxName: addressName,
-          value: [item.longitude, item.latitude],
-        },
-        battery: item.battery,
-        temperature: item.temperature,
-      }
+    for (const item of data) {
+      const mapData = await getMapData(item)
+      const { provinceName } = mapData
 
       overViewMapsData.value.push(mapData)
+
+      const count = cityData.get(provinceName) || 0
+      cityData.set(mapData.provinceName, count + 1)
     }
 
-    console.log('overViewMapsData', toRaw(overViewMapsData.value))
+    console.log(cityData)
+  }
+
+  async function getMapData(item: BoxMessages) {
+    const data = await _getLocationData(`${item.longitude},${item.latitude}`)
+
+    const provinceName = data.addressComponent.province || '未知'
+    const addressName = data.formatted_address || '未知'
+
+    const mapData: InitMapsData = {
+      provinceName: provinceName.replace(/省|市|自治区/g, ''),
+      value: 1,
+      boxId: item.boxId,
+      coord: {
+        boxName: addressName,
+        value: [item.longitude, item.latitude],
+      },
+      battery: item.battery,
+      temperature: item.temperature,
+    }
+    return mapData
   }
 
   async function init() {
@@ -101,15 +90,14 @@ export const useOverViewStore = defineStore('chain-cold-overView', () => {
 
     arrivalCitys.value = initData.value.boxes.map(item => item.arrivalCity)
     vaccines.value = initData.value.vaccines
-
-    await initMapsData()
   }
 
   return {
     init,
+    cityData,
     overViewMapsData,
     vaccines,
   }
 }, {
-  persist: true,
+  // persist: true,
 })
