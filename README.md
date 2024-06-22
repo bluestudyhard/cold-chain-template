@@ -6,7 +6,7 @@
 
 ```bash
 # 启动模拟的后端
-pnpm serve
+pnpm dev:server
 
 # 前端
 pnpm dev
