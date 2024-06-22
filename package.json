@@ -10,7 +10,7 @@
   },
   "scripts": {
     "dev": "NODE_OPTIONS=--max-old-space-size=4096 vite",
-    "serve": "nitro dev",
+    "dev:server": "nitro dev --dir server --port 3090",
     "build": "rimraf dist && NODE_OPTIONS=--max-old-space-size=8192 vite build",
     "build:staging": "rimraf dist && vite build --mode staging",
     "report": "rimraf dist && vite build",
