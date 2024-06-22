@@ -81,14 +81,19 @@ watchEffect(async () => {
           <el-button>详细信息</el-button>
         </div>
       </template>
+
       <div ref="chartRef" class="box-chart" />
+
       <span class="box-overView">
         <el-table :data="dialogInfo" height="200px" border stripe>
           <el-table-column prop="boxId" label="设备ID" />
           <el-table-column prop="coord.boxName" label="设备位置" />
-          <el-table-column prop="value" label="设备值" />
+          <!-- <el-table-column prop="value" label="设备值" /> -->
           <el-table-column prop="battery" label="电量" />
-          <el-table-column prop="temperature" label="温度" />
+          <el-table-column prop="temperature" label="当前温度" />
+          <el-table-column prop="temperRange" label="适宜温度范围" />
+          <el-table-column prop="vaccineStatus" label="温度状态" />
+
           <!-- 按钮 -->
           <el-table-column
             fixed="right"

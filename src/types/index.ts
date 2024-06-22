@@ -20,4 +20,7 @@ export interface InitMapsData {
   }
   battery: string
   temperature: string
+  statusColor: string
+  vaccineStatus: string
+  temperRange: string
 }
