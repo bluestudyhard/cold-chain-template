@@ -11,7 +11,7 @@ import type { InitMapsData } from '@/types/index'
 const props = defineProps<{
   overViewTitle: string
   dialogInfo: InitMapsData[]
-  boxId: string
+  // boxId: string
 }>()
 const chartRef = ref<HTMLDivElement | null>(null)
 const { setOptions } = useECharts(chartRef)

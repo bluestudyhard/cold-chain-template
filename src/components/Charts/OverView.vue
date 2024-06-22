@@ -28,17 +28,36 @@ onMounted(async () => {
       show: true,
     },
     geo: {
+      tooltip: {
+        show: false,
+      },
+      map: 'china',
+      roam: false, // 开启鼠标缩放和平移
+      label: {
+        show: false,
+      },
+      top: '0.5%',
+      left: 'center',
+      aspectScale: 0.75,
+      itemStyle: {
+        borderColor: '#EDF1F5', // 省分界线颜色
+        borderWidth: 1,
+        opacity: 1,
+        shadowBlur: 10,
+        shadowColor: '#c7c7c7c2',
+        shadowOffsetX: 1,
+        shadowOffsetY: 1,
+      },
+    },
+    series: [{
       type: 'map',
       map: 'china',
       zoom: 1,
       tooltip: {
         show: true,
         formatter(params: any) {
-          const provinceName = params.name as string
-
-          const count = store.cityData.get(provinceName) || 0
-
-          return `${provinceName}：${count}`
+          return `${params.name}:${params.value || 0}`
+          // return `<div style="color: #fff; background-color: #333; padding: 10px;"><h4 style="margin: 0;">${params.name}</h4></div>`
         },
       },
       label: {
@@ -52,9 +71,23 @@ onMounted(async () => {
       left: 'center',
       aspectScale: 0.75,
       roam: 'scale', // 地图缩放和平移
+      progressive: 0,
       itemStyle: {
         borderColor: '#D5DAE9', // 省分界线颜色  阴影效果的
         borderWidth: 1,
+        // areaColor: new echarts.graphic.LinearGradient(0, 0, 1, 0, [
+        //   {
+        //     offset: 0,
+        //     color: '#FEFEDF', // 0% 处的颜色
+        //   },
+
+        //   {
+        //     offset: 1,
+        //     color: '#00619A', // 0% 处的颜色
+        //   },
+        // ]),
+        // areaColor: '#4280C7',
+        // opacity: 1,
       },
       // 去除选中状态
       select: {
@@ -74,8 +107,13 @@ onMounted(async () => {
         },
       },
       z: 2,
-    },
-    series: [{
+      data: store.overViewMapsData.map((item) => {
+        return {
+          name: item.provinceName,
+          value: item.value,
+        }
+      }),
+    }, {
       type: 'scatter',
       coordinateSystem: 'geo',
       symbol: 'pin',
@@ -96,21 +134,17 @@ onMounted(async () => {
         }
       }),
       silent: true,
-    },
-    ],
+    }],
   }, {
     name: 'click',
     callback: (params: any) => {
-      const provinceName = params.name as string
-
-      overViewTitle.value = `数据详情 - ${provinceName}`
+      overViewTitle.value = params.name
       dialogVisible.value = true
 
       dialogInfo.value = store.overViewMapsData.filter(
         item => item.provinceName === params.name,
       )
-
-      console.log(toRaw(dialogInfo.value), 'dialogInfo')
+      console.log(dialogInfo.value, 'dialogInfo')
     },
   })
 })
