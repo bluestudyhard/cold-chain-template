@@ -62,14 +62,14 @@ export const useOverViewStore = defineStore('chain-cold-overView', () => {
       cityData.set(mapData.provinceName, count + 1)
     }
 
-    console.log(cityData)
+    console.log({ cityData })
   }
 
   async function getMapData(item: BoxMessages) {
     const data = await _getLocationData(`${item.longitude},${item.latitude}`)
 
-    const provinceName = data.addressComponent.province || '未知'
-    const addressName = data.formatted_address || '未知'
+    const provinceName = data.addressComponent.province
+    const addressName = data.formatted_address
 
     const { vaccineId } = initData.value.boxes.find(b => b.id === item.boxId)
     const vaccine = initData.value.vaccines.find(v => v.id === vaccineId)
@@ -105,7 +105,8 @@ export const useOverViewStore = defineStore('chain-cold-overView', () => {
   }
 
   async function init() {
-    await Promise.all([getInitData(), getBoxMessageData()])
+    await getInitData()
+    await getBoxMessageData()
 
     arrivalCitys.value = initData.value.boxes.map(item => item.arrivalCity)
     vaccines.value = initData.value.vaccines

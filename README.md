@@ -12,6 +12,8 @@ pnpm serve
 pnpm dev
 ```
 
+在 http://localhost:8848/admin/device 可以测试后端接口中的 http://localhost:3090/polling 就是指 SSE 的实现。后端将每3秒发送最新的 boxMessage。SSE 在刷新或关闭窗口前都不会断连
+
 ### 关于pureAdmin的文档
 
 [点我查看 vue-pure-admin 文档](https://pure-admin.github.io/pure-admin-doc)
