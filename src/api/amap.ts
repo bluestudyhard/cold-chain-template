@@ -1,3 +1,5 @@
+import { fetchEventSource } from '@microsoft/fetch-event-source'
+
 import { http } from '@/utils/http'
 import type {
   AMapRegeoResponse,
@@ -27,11 +29,21 @@ export async function getLocationData(location: string) {
 }
 
 export async function fetchInitData() {
-  const res = await http.get<InitOverViewData>(`${baseUrl}/init-data.json`)
+  const res = await http.get<InitOverViewData>(`${baseUrl}/info`)
   return res
 }
 
 export async function fetchBoxMessages() {
-  const res = await http.get<BoxMessages[]>(`${baseUrl}/boxMessages.json`)
+  const res = await http.get<BoxMessages[]>(`${baseUrl}/boxMessage`)
   return res
+}
+
+export async function pollingFetch() {
+  await fetchEventSource(`${baseUrl}/polling`, {
+    onmessage(ev) {
+      const data = JSON.parse(ev.data) as BoxMessages[]
+
+      console.log(data[0])
+    },
+  })
 }

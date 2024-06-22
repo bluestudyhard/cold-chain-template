@@ -40,5 +40,5 @@
     "auto-imports.d.ts",
     "src/charts/china.js"
   ],
-  "exclude": ["dist", "**/*.js", "node_modules"]
+  "exclude": ["dist", "**/*.js", "node_modules", "server"]
 }
