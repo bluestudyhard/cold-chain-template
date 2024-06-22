@@ -80,8 +80,7 @@ class PureHttp {
             const data = getToken()
             if (data) {
               const now = new Date().getTime()
-              const expired
-                                  = Number.parseInt(data.expires) - now <= 0
+              const expired = Number.parseInt(data.expires) - now <= 0
               if (expired) {
                 if (!PureHttp.isRefreshing) {
                   PureHttp.isRefreshing = true
@@ -181,7 +180,7 @@ class PureHttp {
   }
 
   /** 单独抽离的`post`工具函数 */
-  public post<T, P>(
+  public post<T, P = T>(
     url: string,
     params?: AxiosRequestConfig<P>,
     config?: PureHttpRequestConfig,
@@ -190,7 +189,7 @@ class PureHttp {
   }
 
   /** 单独抽离的`get`工具函数 */
-  public get<T, P>(
+  public get<T, P = T>(
     url: string,
     params?: AxiosRequestConfig<P>,
     config?: PureHttpRequestConfig,

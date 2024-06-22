@@ -17,9 +17,7 @@ const chartRef = ref<HTMLDivElement | null>(null)
 const { setOptions } = useECharts(chartRef)
 
 const dialogVisible = defineModel({ default: false })
-watch(props.dialogInfo, (val) => {
-  console.log(val, 'dialogInfo')
-})
+
 watchEffect(async () => {
   setOptions({
     title: {

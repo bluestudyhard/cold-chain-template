@@ -15,7 +15,9 @@ export interface TabItem {
   emptyText: string
 }
 
-export const noticesData: TabItem[] = [
+export const noticesData: TabItem[] = []
+
+const _tmp = [
   {
     key: '1',
     name: '通知',

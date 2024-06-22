@@ -7,7 +7,5 @@
 <script setup lang="ts"></script>
 
 <template>
-  <div class="container">
-    <over-view />
-  </div>
+  <over-view />
 </template>

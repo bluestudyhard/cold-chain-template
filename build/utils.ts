@@ -11,7 +11,6 @@ import {
   version,
 } from '../package.json'
 
-/** 启动`node`进程时所在工作目录的绝对路径 */
 const root: string = resolve(dirname(fileURLToPath(import.meta.url)), '../')
 
 /**
