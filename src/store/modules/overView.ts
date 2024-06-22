@@ -71,6 +71,10 @@ export const useOverViewStore = defineStore('chain-cold-overView', () => {
     const provinceName = data.addressComponent.province || '未知'
     const addressName = data.formatted_address || '未知'
 
+    const { vaccineId } = initData.value.boxes.find(b => b.id === item.boxId)
+    const vaccine = initData.value.vaccines.find(v => v.id === vaccineId)
+    const vaccineStatus = getStatus(item.temperature, vaccine.low, vaccine.high)
+
     const mapData: InitMapsData = {
       provinceName: provinceName.replace(/省|市|自治区/g, ''),
       value: 1,
@@ -81,8 +85,23 @@ export const useOverViewStore = defineStore('chain-cold-overView', () => {
       },
       battery: item.battery,
       temperature: item.temperature,
+      statusColor: vaccineStatus === '正常' ? '#22c55e' : '#dc2626',
+      vaccineStatus,
+      temperRange: `${vaccine.low}℃ ~ ${vaccine.high}℃`,
     }
     return mapData
+  }
+
+  function getStatus(temperature: string, low: string, high: string) {
+    const _temperature = Number.parseFloat(temperature)
+    const _low = Number.parseFloat(low)
+    const _high = Number.parseFloat(high)
+
+    if (_temperature < _low)
+      return '温度过低'
+    else if (_temperature > _high)
+      return '温度过高'
+    return '正常'
   }
 
   async function init() {
