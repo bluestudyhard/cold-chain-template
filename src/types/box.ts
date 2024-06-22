@@ -1,4 +1,4 @@
-export interface BoxMessageData {
+export interface BoxMessages {
   id?: string
   boxId?: string
   createdAt?: string // ISO 8601 format date-time string

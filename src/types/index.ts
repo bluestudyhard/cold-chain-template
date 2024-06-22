@@ -9,9 +9,11 @@ export interface InitOverViewData {
   vaccines: VaccineData[]
   boxes: BoxPatchInitData[]
 }
+
 export interface InitMapsData {
   provinceName: string
   value: number
+  boxId: string
   coord: {
     boxName: string
     value: [string, string]

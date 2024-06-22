@@ -1,7 +1,7 @@
 import { http } from '@/utils/http'
 import type {
   AMapRegeoResponse,
-  BoxMessageData,
+  BoxMessages,
   InitOverViewData,
 } from '@/types/index'
 
@@ -10,10 +10,10 @@ const locationUrl = '/location'
 
 export type LocationResult = AMapRegeoResponse
 
-export async function getPatchLocationData(location: string) {
+export async function getLocationData(location: string) {
   // 打印实际请求的 URL
-  console.log(baseUrl + locationUrl)
-  console.log('real 坐标', location)
+  // console.log(baseUrl + locationUrl)
+  // console.log('real 坐标', location)
   const res = await http.request<LocationResult>(
     'get',
     baseUrl + locationUrl,
@@ -24,15 +24,16 @@ export async function getPatchLocationData(location: string) {
   return res
 }
 
-export async function getInitPatchLocationData() {
+export async function fetchInitData() {
   const res = await http.request<InitOverViewData>(
     'get',
     '/mock/init-data.json',
   )
   return res
 }
-export async function getInitMapsData() {
-  const res = await http.request<BoxMessageData[]>(
+
+export async function fetchBoxMessages() {
+  const res = await http.request<BoxMessages[]>(
     'get',
     '/mock/boxMessages.json',
   )

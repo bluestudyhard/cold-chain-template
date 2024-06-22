@@ -1,4 +1,5 @@
-import { type ConfigEnv, type UserConfigExport, loadEnv } from 'vite'
+import path from 'node:path'
+import { ConfigEnv, UserConfigExport, loadEnv } from 'vite'
 import Components from 'unplugin-vue-components/vite'
 import AutoImport from 'unplugin-auto-import/vite'
 import { exclude, include } from './build/optimize'
@@ -35,13 +36,13 @@ export default ({ mode }: ConfigEnv): UserConfigExport => {
     plugins: [
       getPluginsList(VITE_CDN, VITE_COMPRESSION),
       Components({
-        dts: true,
+        dts: path.join(root, 'types/auto-components.d.ts'),
         // 忽视掉components目录下的Redialog文件夹
         exclude: /components\/ReDialog/,
       }),
       AutoImport({
         imports: ['vue', 'vue-router', 'pinia'],
-        dts: true,
+        dts: path.join(root, 'types/auto-import.d.ts'),
       }),
     ],
     // https://cn.vitejs.dev/config/dep-optimization-options.html#dep-optimization-options

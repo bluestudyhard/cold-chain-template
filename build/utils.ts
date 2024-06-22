@@ -12,7 +12,7 @@ import {
 } from '../package.json'
 
 /** 启动`node`进程时所在工作目录的绝对路径 */
-const root: string = process.cwd()
+const root: string = resolve(dirname(fileURLToPath(import.meta.url)), '../')
 
 /**
  * @description 根据可选的路径片段生成一个新的绝对路径
