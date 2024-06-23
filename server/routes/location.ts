@@ -1,12 +1,8 @@
 import http from 'axios'
-import 'dotenv/config'
 
 async function getLocationName(location: string) {
   const restApi = 'https://restapi.amap.com/v3/geocode/regeo'
-
-  const {
-    VITE_LOCATION_KEY: mapKey,
-  } = process.env
+  const { mapKey } = useAppConfig()
 
   const restParams = {
     output: 'JSON',
