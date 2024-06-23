@@ -14,6 +14,11 @@ import { useDark } from '@pureadmin/utils'
 import generateRandomColor from '@/utils/generateRandomColor'
 import movingCarIcon from '@/assets/moving-car.png'
 
+/**
+ * path: [starPosition, endPosition]
+ * carPosition: carPositon
+ */
+
 interface Path {
   path: [number, number][]
   carPosition: [number, number]
@@ -23,15 +28,17 @@ const props = withDefaults(defineProps<Path>(), {
     [116.5, 40],
     [113.2, 24.1],
   ],
-  carPosition: () => [116.5, 40],
 })
 const AmapKey = import.meta.env.VITE_AMAP_KEY
 const { isDark } = useDark()
 const map = ref(null)
 let car: any = null
+const MAP_ZOOM = 4.3
+const CAR_ZOOM = 7
+// mock数据车的运动
+const CAR_SPEED = 0.0005
 let moveInterval: any = null
-const isInfoWindowOpen = ref(false)
-const currentCarPosition = ref<any>(props.carPosition)
+const currentCarPosition = ref<any>(props.carPosition || props.path[0])
 const path = ref<any>(props.path)
 const followCarCenter = ref(false)
 const isZoomMapToCar = computed({
@@ -39,15 +46,15 @@ const isZoomMapToCar = computed({
     if (!map.value)
       return false
     console.log('map.value.getZoom()', map.value.getZoom())
-    return map.value.getZoom() > 5
+    return map.value.getZoom() > MAP_ZOOM
   },
   set: (value) => {
     if (value) {
-      map.value.setZoom(7)
+      map.value.setZoom(CAR_ZOOM)
       followCarCenter.value = true
     }
     else {
-      map.value.setZoom(4.8)
+      map.value.setZoom(MAP_ZOOM)
       followCarCenter.value = false
     }
   },
@@ -57,7 +64,7 @@ const initialPosition = [116.397428, 39.90923]
 const initialPath = props.path
 
 function resetMap() {
-  map.value.setZoomAndCenter(4.8, initialPosition)
+  map.value.setZoomAndCenter(MAP_ZOOM, initialPosition)
   followCarCenter.value = false
 }
 
@@ -76,7 +83,7 @@ function generatePosition(
 function initMap(AMap: any) {
   map.value = new AMap.Map('container', {
     mapStyle: 'amap://styles/normal',
-    zoom: 4.8,
+    zoom: MAP_ZOOM,
     center: initialPosition,
     scrollWheel: false,
     doubleClickZoom: false,
@@ -101,7 +108,7 @@ function initMap(AMap: any) {
 
   car = new AMap.Marker({
     map: map.value,
-    position: path.value[0],
+    position: currentCarPosition.value,
     icon: viaIcon,
     offset: new AMap.Pixel(-15, -30),
   })
@@ -110,15 +117,14 @@ function initMap(AMap: any) {
 
   let moveFactor = 0
   moveInterval = setInterval(() => {
-    const pacing = 0.001
-    moveFactor += pacing
+    moveFactor += CAR_SPEED
     if (moveFactor > 1)
       moveFactor = 0
     const newPosition = generatePosition(path.value[0], path.value[1], moveFactor)
     car.setPosition(newPosition)
     if (followCarCenter.value)
       map.value.setCenter(newPosition)
-    console.log('getPosition', car.getPosition())
+    // console.log('getPosition', car.getPosition())
     handleCarMove({ lnglat: { lng: newPosition[0], lat: newPosition[1] } })
   }, 100)
 
@@ -140,31 +146,12 @@ function initMap(AMap: any) {
     '<a href=\'https://ditu.amap.com/detail/B000A8URXB?citycode=110105\'>详细信息</a>',
   ]
 
-  const infoWindow = new AMap.InfoWindow({
-    isCustom: true,
-    content: `
-      <div class="amap-info-window" style="background-color: #eee;">
-        <h3>${title}</h3>
-        <div>${content.join('<br/>')}</div>
-      </div>
-    `,
-    offset: new AMap.Pixel(16, -45),
-  })
-
   function handleCarClick(event: any) {
     map.value.setZoom(7)
-    console.log('event', event)
-    infoWindow.open(map.value)
-    isInfoWindowOpen.value = true
-    console.log('isInfoWindowOpen', isInfoWindowOpen.value)
   }
 
   function handleCarMove(event: any) {
-    console.log('moving-car', event)
-    if (isInfoWindowOpen.value)
-      infoWindow.open(map.value, [event.lnglat.lng, event.lnglat.lat])
-    else
-      infoWindow.close()
+
   }
 }
 
