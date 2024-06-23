@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia'
+import PQueue from 'p-queue'
 import {
   fetchBoxMessages,
   fetchInitData,
@@ -49,18 +50,21 @@ export const useOverViewStore = defineStore('chain-cold-overView', () => {
    */
   async function getBoxMessageData() {
     const data = await fetchBoxMessages()
-
     console.log('boxMessages', data)
 
+    // 限制并发数
+    const queue = new PQueue({ concurrency: 10 })
     for (const item of data) {
-      const mapData = await getMapData(item)
-      const { provinceName } = mapData
+      queue.add(async () => {
+        const mapData = await getMapData(item)
+        overViewMapsData.value.push(mapData)
 
-      overViewMapsData.value.push(mapData)
-
-      const count = cityData.get(provinceName) || 0
-      cityData.set(mapData.provinceName, count + 1)
+        const { provinceName } = mapData
+        const count = cityData.get(provinceName) || 0
+        cityData.set(mapData.provinceName, count + 1)
+      })
     }
+    await queue.onIdle()
 
     console.log({ cityData })
   }
