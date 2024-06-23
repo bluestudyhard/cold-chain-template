@@ -1,43 +1,29 @@
 import { defineStore } from 'pinia'
+import { fetchEventSource } from '@microsoft/fetch-event-source'
 import PQueue from 'p-queue'
 import {
+  baseUrl,
   fetchBoxMessages,
   fetchInitData,
   getLocationData,
 } from '@/api/amap'
 import {
   BoxMessages,
-  InitMapsData,
-  InitOverViewData,
+  MapsData,
+  OverViewData,
   VaccineData,
 } from '@/types'
 
 export const useOverViewStore = defineStore('chain-cold-overView', () => {
-  const initData = shallowRef<InitOverViewData>({
+  const initData = shallowRef<OverViewData>({
     vaccines: [],
     boxes: [],
   })
 
-  const overViewMapsData = ref<InitMapsData[]>([])
-  const departureCitys = ref<string[]>([])
-  const arrivalCitys = ref<string[]>([])
+  const overViewMapsData = ref<MapsData[]>([])
 
   const vaccines = ref<VaccineData[]>([])
-
   const cityData = new Map<string, number>()
-
-  async function _getLocationData(location: string) {
-    const locationInfo = await getLocationData(location)
-
-    if (!locationInfo?.formatted_address) {
-      return {
-        addressComponent: { province: '未知' },
-        formatted_address: '未知',
-      }
-    }
-
-    return locationInfo
-  }
 
   async function getInitData() {
     const res = await fetchInitData()
@@ -45,32 +31,35 @@ export const useOverViewStore = defineStore('chain-cold-overView', () => {
     initData.value = res
   }
 
-  /**
-   * @description: 获取所有的盒子数据
-   */
-  async function getBoxMessageData() {
-    const data = await fetchBoxMessages()
-    console.log('boxMessages', data)
+  async function setBoxMessageData(data: BoxMessages[]) {
+    const tmpMap: MapsData[] = []
+    const tmpCityData = new Map<string, number>()
 
     // 限制并发数
     const queue = new PQueue({ concurrency: 10 })
     for (const item of data) {
       queue.add(async () => {
         const mapData = await getMapData(item)
-        overViewMapsData.value.push(mapData)
+        tmpMap.push(mapData)
 
         const { provinceName } = mapData
         const count = cityData.get(provinceName) || 0
-        cityData.set(mapData.provinceName, count + 1)
+        tmpCityData.set(provinceName, count + 1)
       })
     }
     await queue.onIdle()
+
+    overViewMapsData.value = tmpMap
+    cityData.clear()
+    for (const [key, value] of tmpCityData) {
+      cityData.set(key, value)
+    }
 
     console.log({ cityData })
   }
 
   async function getMapData(item: BoxMessages) {
-    const data = await _getLocationData(`${item.longitude},${item.latitude}`)
+    const data = await getLocationData(`${item.longitude},${item.latitude}`)
 
     const provinceName = data.addressComponent.province
     const addressName = data.formatted_address
@@ -79,7 +68,7 @@ export const useOverViewStore = defineStore('chain-cold-overView', () => {
     const vaccine = initData.value.vaccines.find(v => v.id === vaccineId)
     const vaccineStatus = getStatus(item.temperature, vaccine.low, vaccine.high)
 
-    const mapData: InitMapsData = {
+    const mapData: MapsData = {
       provinceName: provinceName.replace(/省|市|自治区/g, ''),
       value: 1,
       boxId: item.boxId,
@@ -110,14 +99,28 @@ export const useOverViewStore = defineStore('chain-cold-overView', () => {
 
   async function init() {
     await getInitData()
-    await getBoxMessageData()
-
-    arrivalCitys.value = initData.value.boxes.map(item => item.arrivalCity)
     vaccines.value = initData.value.vaccines
+
+    const boxMessages = await fetchBoxMessages()
+    await setBoxMessageData(boxMessages)
+  }
+
+  /**
+   * 订阅箱子消息，实时更新地图数据
+   */
+  async function subcribeBoxMessage() {
+    await fetchEventSource(`${baseUrl}/polling`, {
+      async onmessage(ev) {
+        const data = JSON.parse(ev.data) as BoxMessages[]
+
+        await setBoxMessageData(data)
+      },
+    })
   }
 
   return {
     init,
+    subcribeBoxMessage,
     cityData,
     overViewMapsData,
     vaccines,

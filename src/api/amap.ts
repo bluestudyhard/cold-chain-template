@@ -4,32 +4,46 @@ import { http } from '@/utils/http'
 import type {
   AMapRegeoResponse,
   BoxMessages,
-  InitOverViewData,
+  OverViewData,
 } from '@/types/index'
 
-const baseUrl = 'http://localhost:3090'
+export const baseUrl = 'http://localhost:3090'
 
 export type LocationResult = AMapRegeoResponse
 
+const unkownLocation = {
+  addressComponent: { province: '未知' },
+  formatted_address: '未知',
+}
+
+const locationCache = new Map<string, typeof unkownLocation>()
+
 export async function getLocationData(location: string) {
-  // 打印实际请求的 URL
-  // console.log(baseUrl + locationUrl)
-  // console.log('real 坐标', location)
+  if (locationCache.has(location)) {
+    return locationCache.get(location)
+  }
 
   try {
     const res = await http.get<LocationResult>(`${baseUrl}/location`, {
       params: { location },
     })
+
+    if (!res.regeocode?.formatted_address) {
+      return unkownLocation
+    }
+
+    locationCache.set(location, res.regeocode)
+
     return res.regeocode
   }
   catch (e) {
     console.error('getLocationData', e)
-    return null
+    return unkownLocation
   }
 }
 
 export async function fetchInitData() {
-  const res = await http.get<InitOverViewData>(`${baseUrl}/info`)
+  const res = await http.get<OverViewData>(`${baseUrl}/info`)
   return res
 }
 

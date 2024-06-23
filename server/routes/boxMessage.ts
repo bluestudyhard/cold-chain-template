@@ -3,7 +3,7 @@ import { readFile } from 'node:fs/promises'
 import { root } from '../index'
 
 export default defineEventHandler(async (event) => {
-  const data = await readFile(path.join(root, 'mock/boxMessages.json'))
+  const data = await readFile(path.join(root, 'mock/boxMessages-0.json'))
 
   return data
 })

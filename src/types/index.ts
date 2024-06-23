@@ -1,16 +1,16 @@
-import type { BoxPatchInitData } from './box'
+import type { BoxPatchData } from './box'
 import type { VaccineData } from './vaccines'
 
 export * from './amap'
 export * from './box'
 export * from './vaccines'
 
-export interface InitOverViewData {
+export interface OverViewData {
   vaccines: VaccineData[]
-  boxes: BoxPatchInitData[]
+  boxes: BoxPatchData[]
 }
 
-export interface InitMapsData {
+export interface MapsData {
   provinceName: string
   value: number
   boxId: string
