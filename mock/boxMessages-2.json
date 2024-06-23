@@ -1,182 +1,182 @@
 [
   {
-    "id": "66745cfdc5eec5d23bd461e2",
-    "boxId": "66745cfdc5eec5d23bd461a6",
-    "createdAt": "2024-04-23T16:57:39.921Z",
-    "temperature": "-19.912",
-    "battery": "88.226",
-    "longitude": "118.011",
-    "latitude": "32.386"
+    "id": "6677d21e17e576029bdb344e",
+    "boxId": "6677d21d17e576029bdb3426",
+    "createdAt": "2024-06-24T22:39:50.097Z",
+    "temperature": "4.291",
+    "battery": "24.681",
+    "longitude": "113.896",
+    "latitude": "38.546"
   },
   {
-    "id": "66745cfdc5eec5d23bd461e8",
-    "boxId": "66745cfdc5eec5d23bd461ac",
-    "createdAt": "2024-04-24T05:30:39.426Z",
-    "temperature": "-21.848",
-    "battery": "56.755",
-    "longitude": "115.010",
-    "latitude": "26.557"
+    "id": "6677d21e17e576029bdb344f",
+    "boxId": "6677d21d17e576029bdb3427",
+    "createdAt": "2024-06-24T23:32:03.776Z",
+    "temperature": "5.231",
+    "battery": "73.684",
+    "longitude": "98.844",
+    "latitude": "35.803"
   },
   {
-    "id": "66745cfdc5eec5d23bd461c3",
-    "boxId": "66745cfdc5eec5d23bd461af",
-    "createdAt": "2024-04-24T11:02:24.320Z",
-    "temperature": "8.558",
-    "battery": "24.916",
-    "longitude": "101.776",
-    "latitude": "40.145"
+    "id": "6677d21e17e576029bdb3451",
+    "boxId": "6677d21d17e576029bdb3429",
+    "createdAt": "2024-06-25T02:33:00.032Z",
+    "temperature": "3.686",
+    "battery": "22.529",
+    "longitude": "107.202",
+    "latitude": "32.225"
   },
   {
-    "id": "66745cfdc5eec5d23bd461bb",
-    "boxId": "66745cfdc5eec5d23bd461a7",
-    "createdAt": "2024-04-26T22:28:50.545Z",
-    "temperature": "-20.061",
-    "battery": "58.596",
-    "longitude": "107.326",
-    "latitude": "41.216"
+    "id": "6677d21e17e576029bdb3462",
+    "boxId": "6677d21d17e576029bdb3426",
+    "createdAt": "2024-06-25T03:51:21.136Z",
+    "temperature": "2.138",
+    "battery": "23.245",
+    "longitude": "115.027",
+    "latitude": "39.930"
   },
   {
-    "id": "66745cfdc5eec5d23bd461d1",
-    "boxId": "66745cfdc5eec5d23bd461a9",
-    "createdAt": "2024-04-29T23:54:05.936Z",
-    "temperature": "-20.723",
-    "battery": "41.093",
-    "longitude": "105.347",
-    "latitude": "29.209"
+    "id": "6677d21e17e576029bdb344d",
+    "boxId": "6677d21d17e576029bdb3425",
+    "createdAt": "2024-06-25T04:04:45.482Z",
+    "temperature": "6.593",
+    "battery": "76.143",
+    "longitude": "115.636",
+    "latitude": "32.423"
   },
   {
-    "id": "66745ffa7c027714c3482d5a",
-    "boxId": "66745cfdc5eec5d23bd461ad",
-    "createdAt": "2024-04-30T05:51:21.166Z",
-    "temperature": "8.830",
-    "battery": "48.760",
-    "longitude": "113.570",
-    "latitude": "39.549"
+    "id": "6677d21e17e576029bdb346d",
+    "boxId": "6677d21d17e576029bdb3431",
+    "createdAt": "2024-06-25T05:07:28.269Z",
+    "temperature": "7.222",
+    "battery": "1.467",
+    "longitude": "97.630",
+    "latitude": "32.638"
   },
   {
-    "id": "66745cfdc5eec5d23bd461be",
-    "boxId": "66745cfdc5eec5d23bd461aa",
-    "createdAt": "2024-05-03T01:31:04.344Z",
-    "temperature": "7.884",
-    "battery": "47.451",
-    "longitude": "115.665",
-    "latitude": "26.084"
+    "id": "6677d21e17e576029bdb345b",
+    "boxId": "6677d21d17e576029bdb341f",
+    "createdAt": "2024-06-25T05:49:02.209Z",
+    "temperature": "-24.363",
+    "battery": "27.519",
+    "longitude": "102.499",
+    "latitude": "32.350"
   },
   {
-    "id": "66745cfdc5eec5d23bd461eb",
-    "boxId": "66745cfdc5eec5d23bd461af",
-    "createdAt": "2024-05-04T10:26:57.362Z",
-    "temperature": "5.356",
-    "battery": "25.988",
-    "longitude": "103.756",
-    "latitude": "39.013"
+    "id": "6677d21e17e576029bdb347e",
+    "boxId": "6677d21d17e576029bdb342e",
+    "createdAt": "2024-06-25T07:08:59.605Z",
+    "temperature": "-15.657",
+    "battery": "70.008",
+    "longitude": "99.172",
+    "latitude": "33.763"
   },
   {
-    "id": "66745cfdc5eec5d23bd461ea",
-    "boxId": "66745cfdc5eec5d23bd461ae",
-    "createdAt": "2024-05-04T12:25:25.704Z",
-    "temperature": "-22.602",
-    "battery": "59.829",
-    "longitude": "109.765",
-    "latitude": "35.113"
+    "id": "6677d21e17e576029bdb3453",
+    "boxId": "6677d21d17e576029bdb342b",
+    "createdAt": "2024-06-25T07:25:13.573Z",
+    "temperature": "-19.244",
+    "battery": "23.466",
+    "longitude": "104.538",
+    "latitude": "24.753"
   },
   {
-    "id": "667460157c027714c3482d5b",
-    "boxId": "66745cfdc5eec5d23bd461ae",
-    "createdAt": "2024-05-05T11:33:47.096Z",
-    "temperature": "-17.573",
-    "battery": "82.906",
-    "longitude": "114.077",
-    "latitude": "32.526"
+    "id": "6677d21e17e576029bdb347f",
+    "boxId": "6677d21d17e576029bdb342f",
+    "createdAt": "2024-06-25T07:47:50.899Z",
+    "temperature": "1.914",
+    "battery": "24.443",
+    "longitude": "107.353",
+    "latitude": "25.942"
   },
   {
-    "id": "66745cfdc5eec5d23bd461b1",
-    "boxId": "66745cfdc5eec5d23bd4619d",
-    "createdAt": "2024-05-06T19:15:35.715Z",
-    "temperature": "-22.659",
-    "battery": "51.546",
-    "longitude": "112.886",
-    "latitude": "34.628"
+    "id": "6677d21e17e576029bdb3481",
+    "boxId": "6677d21d17e576029bdb3431",
+    "createdAt": "2024-06-25T09:30:27.717Z",
+    "temperature": "8.100",
+    "battery": "87.457",
+    "longitude": "97.518",
+    "latitude": "32.483"
   },
   {
-    "id": "66745cfdc5eec5d23bd461c5",
-    "boxId": "66745cfdc5eec5d23bd4619d",
-    "createdAt": "2024-05-09T11:28:11.985Z",
-    "temperature": "-19.162",
-    "battery": "44.011",
-    "longitude": "116.379",
-    "latitude": "33.804"
+    "id": "6677d21e17e576029bdb3463",
+    "boxId": "6677d21d17e576029bdb3427",
+    "createdAt": "2024-06-25T09:31:49.502Z",
+    "temperature": "4.686",
+    "battery": "60.933",
+    "longitude": "95.750",
+    "latitude": "36.239"
   },
   {
-    "id": "66745cfdc5eec5d23bd461b0",
-    "boxId": "66745cfdc5eec5d23bd4619c",
-    "createdAt": "2024-05-11T06:42:26.415Z",
-    "temperature": "1.705",
-    "battery": "55.767",
-    "longitude": "114.590",
-    "latitude": "35.423"
+    "id": "6677d21e17e576029bdb3493",
+    "boxId": "6677d21d17e576029bdb342f",
+    "createdAt": "2024-06-25T09:35:19.589Z",
+    "temperature": "4.234",
+    "battery": "81.031",
+    "longitude": "107.353",
+    "latitude": "25.942"
   },
   {
-    "id": "66745cfdc5eec5d23bd461d5",
-    "boxId": "66745cfdc5eec5d23bd461ad",
-    "createdAt": "2024-05-15T07:35:01.284Z",
-    "temperature": "5.669",
-    "battery": "67.631",
-    "longitude": "103.747",
-    "latitude": "39.854"
+    "id": "6677d21e17e576029bdb3461",
+    "boxId": "6677d21d17e576029bdb3425",
+    "createdAt": "2024-06-25T09:54:40.564Z",
+    "temperature": "5.642",
+    "battery": "26.747",
+    "longitude": "106.205",
+    "latitude": "31.122"
   },
   {
-    "id": "66745cfdc5eec5d23bd461df",
-    "boxId": "66745cfdc5eec5d23bd461a3",
-    "createdAt": "2024-05-15T22:55:20.469Z",
-    "temperature": "8.735",
-    "battery": "65.785",
-    "longitude": "120.567",
-    "latitude": "29.966"
+    "id": "6677d21e17e576029bdb346e",
+    "boxId": "6677d21d17e576029bdb3432",
+    "createdAt": "2024-06-25T10:03:24.206Z",
+    "temperature": "-18.473",
+    "battery": "2.504",
+    "longitude": "103.360",
+    "latitude": "33.133"
   },
   {
-    "id": "66745cfdc5eec5d23bd461bc",
-    "boxId": "66745cfdc5eec5d23bd461a8",
-    "createdAt": "2024-05-15T23:08:38.979Z",
-    "temperature": "-25.686",
-    "battery": "82.974",
-    "longitude": "114.962",
-    "latitude": "33.547"
+    "id": "6677d21e17e576029bdb3464",
+    "boxId": "6677d21d17e576029bdb3428",
+    "createdAt": "2024-06-25T10:23:36.710Z",
+    "temperature": "4.855",
+    "battery": "66.011",
+    "longitude": "105.010",
+    "latitude": "24.770"
   },
   {
-    "id": "66745cfdc5eec5d23bd461e1",
-    "boxId": "66745cfdc5eec5d23bd461a5",
-    "createdAt": "2024-05-16T07:36:19.723Z",
-    "temperature": "-17.931",
-    "battery": "54.458",
-    "longitude": "109.294",
-    "latitude": "28.694"
+    "id": "6677d21e17e576029bdb3492",
+    "boxId": "6677d21d17e576029bdb342e",
+    "createdAt": "2024-06-25T10:30:40.687Z",
+    "temperature": "-25.499",
+    "battery": "67.381",
+    "longitude": "98.363",
+    "latitude": "33.294"
   },
   {
-    "id": "66745cfdc5eec5d23bd461b6",
-    "boxId": "66745cfdc5eec5d23bd461a2",
-    "createdAt": "2024-05-17T07:08:35.403Z",
-    "temperature": "-20.428",
-    "battery": "85.118",
-    "longitude": "116.386",
-    "latitude": "28.729"
+    "id": "6677d21e17e576029bdb3473",
+    "boxId": "6677d21d17e576029bdb3423",
+    "createdAt": "2024-06-25T11:14:32.107Z",
+    "temperature": "7.461",
+    "battery": "63.720",
+    "longitude": "114.475",
+    "latitude": "34.188"
   },
   {
-    "id": "66745cfdc5eec5d23bd461d9",
-    "boxId": "66745cfdc5eec5d23bd4619d",
-    "createdAt": "2024-05-20T15:51:46.619Z",
-    "temperature": "-24.995",
-    "battery": "95.869",
-    "longitude": "116.379",
-    "latitude": "33.804"
+    "id": "6677d21e17e576029bdb3487",
+    "boxId": "6677d21d17e576029bdb3423",
+    "createdAt": "2024-06-25T11:19:30.106Z",
+    "temperature": "5.218",
+    "battery": "99.080",
+    "longitude": "114.465",
+    "latitude": "34.182"
   },
   {
-    "id": "66745cfdc5eec5d23bd461e5",
-    "boxId": "66745cfdc5eec5d23bd461a9",
-    "createdAt": "2024-06-01T01:44:18.240Z",
-    "temperature": "-16.915",
-    "battery": "34.800",
-    "longitude": "113.996",
-    "latitude": "32.477"
+    "id": "6677d21e17e576029bdb3466",
+    "boxId": "6677d21d17e576029bdb342a",
+    "createdAt": "2024-06-25T11:48:56.714Z",
+    "temperature": "6.465",
+    "battery": "18.688",
+    "longitude": "93.848",
+    "latitude": "37.600"
   }
 ]

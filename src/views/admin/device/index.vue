@@ -5,10 +5,10 @@
  * index.vue
 -->
 <script setup lang="ts">
-import { pollingFetch } from '@/api/amap'
+import { pollingBoxMessages } from '@/api/amap'
 
 onMounted(async () => {
-  pollingFetch()
+  pollingBoxMessages(async data => console.log(data[0]))
 })
 </script>
 
