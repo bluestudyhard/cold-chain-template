@@ -1,11 +1,10 @@
 import { defineStore } from 'pinia'
-import { fetchEventSource } from '@microsoft/fetch-event-source'
 import PQueue from 'p-queue'
 import {
-  baseUrl,
   fetchBoxMessages,
   fetchInitData,
   getLocationData,
+  pollingBoxMessages,
 } from '@/api/amap'
 import {
   BoxMessages,
@@ -33,7 +32,7 @@ export const useOverViewStore = defineStore('chain-cold-overView', () => {
 
   async function setBoxMessageData(data: BoxMessages[]) {
     const tmpMap: MapsData[] = []
-    const tmpCityData = new Map<string, number>()
+    cityData.clear()
 
     // 限制并发数
     const queue = new PQueue({ concurrency: 10 })
@@ -44,16 +43,12 @@ export const useOverViewStore = defineStore('chain-cold-overView', () => {
 
         const { provinceName } = mapData
         const count = cityData.get(provinceName) || 0
-        tmpCityData.set(provinceName, count + 1)
+        cityData.set(provinceName, count + 1)
       })
     }
     await queue.onIdle()
 
     overViewMapsData.value = tmpMap
-    cityData.clear()
-    for (const [key, value] of tmpCityData) {
-      cityData.set(key, value)
-    }
 
     console.log({ cityData })
   }
@@ -108,14 +103,8 @@ export const useOverViewStore = defineStore('chain-cold-overView', () => {
   /**
    * 订阅箱子消息，实时更新地图数据
    */
-  async function subcribeBoxMessage() {
-    await fetchEventSource(`${baseUrl}/polling`, {
-      async onmessage(ev) {
-        const data = JSON.parse(ev.data) as BoxMessages[]
-
-        await setBoxMessageData(data)
-      },
-    })
+  function subcribeBoxMessage() {
+    pollingBoxMessages(async data => setBoxMessageData(data))
   }
 
   return {

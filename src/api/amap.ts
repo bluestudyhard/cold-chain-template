@@ -52,12 +52,14 @@ export async function fetchBoxMessages() {
   return res
 }
 
-export async function pollingFetch() {
-  await fetchEventSource(`${baseUrl}/polling`, {
-    onmessage(ev) {
+export async function pollingBoxMessages(
+  cb: (data: BoxMessages[]) => Promise<void>,
+) {
+  return fetchEventSource(`${baseUrl}/polling`, {
+    async onmessage(ev) {
       const data = JSON.parse(ev.data) as BoxMessages[]
 
-      console.log(data[0])
+      await cb(data)
     },
   })
 }
