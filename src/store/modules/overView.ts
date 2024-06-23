@@ -48,6 +48,8 @@ export const useOverViewStore = defineStore('chain-cold-overView', () => {
    * @description: 获取所有的盒子数据
    */
   async function getBoxMessageData() {
+    if (overViewMapsData.value)
+      return
     const data = await fetchBoxMessages()
 
     console.log('boxMessages', data)
@@ -99,5 +101,5 @@ export const useOverViewStore = defineStore('chain-cold-overView', () => {
     vaccines,
   }
 }, {
-  // persist: true,
+  persist: true,
 })
