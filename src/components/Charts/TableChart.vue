@@ -6,11 +6,11 @@
 -->
 <script setup lang="ts">
 import { useECharts } from '@pureadmin/utils'
-import type { InitMapsData } from '@/types/index'
+import type { MapsData } from '@/types/index'
 
 const props = defineProps<{
   overViewTitle: string
-  dialogInfo: InitMapsData[]
+  dialogInfo: MapsData[]
   // boxId: string
 }>()
 const chartRef = ref<HTMLDivElement | null>(null)

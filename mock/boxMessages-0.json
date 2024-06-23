@@ -153,6 +153,15 @@
     "latitude": "31.048"
   },
   {
+    "id": "66745fd61b99cbfa1445ef5d",
+    "boxId": "66745cfdc5eec5d23bd4619c",
+    "createdAt": "2024-03-16T01:48:56.908Z",
+    "temperature": "8.968",
+    "battery": "59.404",
+    "longitude": "106.642",
+    "latitude": "38.153"
+  },
+  {
     "id": "66745cfdc5eec5d23bd461da",
     "boxId": "66745cfdc5eec5d23bd4619e",
     "createdAt": "2024-03-20T12:51:49.549Z",
@@ -169,14 +178,5 @@
     "battery": "44.284",
     "longitude": "120.151",
     "latitude": "29.127"
-  },
-  {
-    "id": "66745cfdc5eec5d23bd461db",
-    "boxId": "66745cfdc5eec5d23bd4619f",
-    "createdAt": "2024-03-28T11:28:52.360Z",
-    "temperature": "4.696",
-    "battery": "8.997",
-    "longitude": "102.889",
-    "latitude": "32.332"
   }
 ]

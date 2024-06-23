@@ -6,7 +6,7 @@
 -->
 <script setup lang="ts">
 import { useECharts } from '@pureadmin/utils'
-import { InitMapsData } from '@/types/index'
+import { MapsData } from '@/types/index'
 import { useOverViewStore } from '@/store/modules/overView'
 import '@/charts/china.js'
 
@@ -16,10 +16,11 @@ const store = useOverViewStore()
 
 const overViewTitle = ref('数据概览')
 const dialogVisible = ref(false)
-const dialogInfo = ref<InitMapsData[]>([])
+const dialogInfo = ref<MapsData[]>([])
 
-onMounted(async () => {
-  await store.init()
+watchEffect(() => {
+  if (!store.overViewMapsData.length)
+    return
 
   setOptions({
     backgroundColor: 'transparent', // 设置背景色透明
@@ -114,6 +115,12 @@ onMounted(async () => {
       console.log(toRaw(dialogInfo.value), 'dialogInfo')
     },
   })
+})
+
+onMounted(async () => {
+  await store.init()
+
+  store.subcribeBoxMessage()
 })
 
 onUnmounted(() => {
