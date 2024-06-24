@@ -2,22 +2,25 @@ import path from 'node:path'
 import { readFile } from 'node:fs/promises'
 import { root } from '../index'
 
-export default defineEventHandler((event) => {
+async function readData(id: number) {
+  const data = await readFile(path.join(root, `mock/boxMessages-${id}.json`))
+    .then(res => res.toString())
+
+  return JSON.stringify(JSON.parse(data))
+}
+
+export default defineEventHandler(async (event) => {
   const eventStream = createEventStream(event)
+  eventStream.push(await readData(0))
 
   let i = 0
-  // Send a message every second
   const interval = setInterval(async () => {
-    const data = await readFile(path.join(root, `mock/boxMessages-${i}.json`))
-      .then(res => res.toString())
-
     i++
-    if (i === 3) {
+    if (i === 4)
       i = 0
-    }
 
-    await eventStream.push(JSON.stringify(JSON.parse(data)))
-  }, 3000)
+    await eventStream.push(await readData(i))
+  }, 10000)
 
   // cleanup the interval and close the stream when the connection is terminated
   eventStream.onClosed(async () => {

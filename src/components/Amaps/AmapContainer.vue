@@ -29,6 +29,7 @@ const props = withDefaults(defineProps<Path>(), {
     [113.2, 24.1],
   ],
 })
+
 const AmapKey = import.meta.env.VITE_AMAP_KEY
 const { isDark } = useDark()
 const map = ref(null)

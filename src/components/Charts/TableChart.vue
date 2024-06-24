@@ -7,12 +7,16 @@
 <script setup lang="ts">
 import { useECharts } from '@pureadmin/utils'
 import type { MapsData } from '@/types/index'
+import { useOverViewStore } from '@/store/modules/overView'
 
 const props = defineProps<{
   overViewTitle: string
   dialogInfo: MapsData[]
   // boxId: string
 }>()
+
+const overViewStore = useOverViewStore()
+
 const chartRef = ref<HTMLDivElement | null>(null)
 const { setOptions } = useECharts(chartRef)
 
@@ -69,6 +73,29 @@ watchEffect(async () => {
     ],
   })
 })
+
+const router = useRouter()
+
+function toAMap(idx: number) {
+  const data = props.dialogInfo[idx]
+  const pos = data.coord.value.join(',')
+
+  const boxData = overViewStore.initData.boxes.find(
+    item => item.id === data.boxId,
+  )
+
+  const from = `${boxData.departureLocation.longitude},${boxData.departureLocation.latitude}`
+  const to = `${boxData.arrivalLocation.longitude},${boxData.arrivalLocation.latitude}`
+
+  router.push({
+    path: '/amap',
+    query: {
+      startPosition: from,
+      endPosition: to,
+      carPosition: pos,
+    },
+  })
+}
 </script>
 
 <template>
@@ -98,11 +125,17 @@ watchEffect(async () => {
         <!-- 按钮 -->
         <el-table-column
           fixed="right"
-          label="Operations"
+          label="操作"
           width="120"
         >
-          <template #default>
-            <el-button type="primary" size="small">实时位置</el-button>
+          <template #default="{ $index }">
+            <el-button
+              type="primary"
+              size="small"
+              @click="() => toAMap($index)"
+            >
+              实时位置
+            </el-button>
           </template>
         </el-table-column>
       </el-table>

@@ -23,6 +23,10 @@ async function getLocationName(location: string) {
     params: restParams,
   })
 
+  if (res.data.status === '0') {
+    console.log('[api] 高德地图', res.data.info)
+  }
+
   return res.data
 }
 
@@ -30,7 +34,7 @@ export default defineEventHandler(async (event) => {
   const { location } = getQuery(event) as {
     location: string
   }
-
+  //
   const locationData = await getLocationName(location)
 
   return locationData

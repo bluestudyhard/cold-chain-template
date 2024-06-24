@@ -13,6 +13,8 @@ if (!mapKey) {
   process.exit(1)
 }
 
+console.log('mapKey', mapKey)
+
 export default defineNitroConfig({
   rootDir: root,
   buildDir: path.join(root, '.nitro'),

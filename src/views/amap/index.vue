@@ -10,23 +10,16 @@ const carPosition = ref<[number, number]>([116.5, 40])
 const params = useUrlSearchParams('history')
 // 转为number：
 console.log('params', params)
+
 if (params.startPosition && params.endPosition) {
-  console.log('params.startPosition', params.startPosition)
   path.value = [
     (params.startPosition as string)?.split(',').map(item => Number(item)) as [number, number],
     (params.endPosition as string)?.split(',').map(item => Number(item)) as [number, number],
   ]
 }
 if (params.carPosition) {
-  carPosition.value = (params.carPostion as any)?.split(',')
+  carPosition.value = (params.carPosition as any)?.split(',').map(item => Number(item)) as [number, number]
 }
-
-onMounted(() => {
-  if (!params.startPosition || !params.endPosition) {
-    params.starPosition = path.value[0].join(',')
-    params.endPosition = path.value[1].join(',')
-  }
-})
 </script>
 
 <template>
