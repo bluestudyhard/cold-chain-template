@@ -67,6 +67,8 @@ export const useOverViewStore = defineStore('chain-cold-overView', () => {
       provinceName: provinceName.replace(/省|市|自治区/g, ''),
       value: 1,
       boxId: item.boxId,
+      createdAt: item.createdAt,
+      vaccineName: vaccine.name,
       coord: {
         boxName: addressName,
         value: [item.longitude, item.latitude],
@@ -121,11 +123,15 @@ export const useOverViewStore = defineStore('chain-cold-overView', () => {
     // await setBoxMessageData(boxMessages)
   }
 
+  const isSub = ref(false)
   /**
    * 订阅箱子消息，实时更新地图数据
    */
-  function subcribeBoxMessage() {
-    pollingBoxMessages(async data => setBoxMessageData(data))
+  async function subcribeBoxMessage() {
+    if (isSub.value)
+      return
+    isSub.value = true
+    await pollingBoxMessages(async data => setBoxMessageData(data))
   }
 
   return {

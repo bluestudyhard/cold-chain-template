@@ -3,17 +3,32 @@ import { computed, ref } from 'vue'
 import BellIcon from '@iconify-icons/ep/bell'
 import { noticesData } from './data'
 import NoticeList from './components/NoticeList.vue'
+import { useManageStore } from '@/store/modules/management'
 
 const noticesNum = ref(0)
 const notices = ref(noticesData)
 const activeKey = ref(noticesData[0]?.key)
 
-notices.value.map(v => (noticesNum.value += v.list.length))
+notices.value.forEach(v => (noticesNum.value += v.list.length))
 
-const getLabel = computed(
-  () => item =>
-    item.name + (item.list.length > 0 ? `(${item.list.length})` : ''),
+const getLabel = computed(() =>
+  item => item.name + (item.list.length > 0 ? `(${item.list.length})` : ''),
 )
+
+const store = useManageStore()
+
+watch(store.warningData, () => {
+  notices.value[0].list = store.warningDataList.map(v => ({
+    id: v.boxId,
+    title: '设备告警',
+    description: `疫苗：${v.vaccineName}，温度：${v.temperature}，状态：${v.status}`,
+    type: 'warning',
+    datetime: v.time,
+    status: 'warning',
+  }))
+
+  noticesNum.value = store.warningDataList.length
+}, { immediate: true })
 </script>
 
 <template>

@@ -14,6 +14,8 @@ export interface MapsData {
   provinceName: string
   value: number
   boxId: string
+  createdAt: string
+  vaccineName: string
   coord: {
     boxName: string
     value: [string, string]
@@ -23,4 +25,11 @@ export interface MapsData {
   statusColor: string
   vaccineStatus: string
   temperRange: string
+}
+
+export interface WarningData {
+  time: string
+  vaccineName: string
+  temperature: string
+  status: string
 }
