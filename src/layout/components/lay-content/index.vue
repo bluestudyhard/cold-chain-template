@@ -2,7 +2,6 @@
 import { isNumber, useGlobal } from '@pureadmin/utils'
 import { Transition, computed, defineComponent, h } from 'vue'
 import LayFrame from '../lay-frame/index.vue'
-import LayFooter from '../lay-footer/index.vue'
 import { useTags } from '@/layout/hooks/useTag'
 import BackTopIcon from '@/assets/svg/back_top.svg?component'
 import { usePermissionStoreHook } from '@/store/modules/permission'
@@ -164,7 +163,6 @@ const transitionMain = defineComponent({
                   />
                 </transitionMain>
               </div>
-              <LayFooter v-if="!hideFooter" />
             </el-scrollbar>
             <div v-else class="grow">
               <transitionMain :route="route">
@@ -194,9 +192,6 @@ const transitionMain = defineComponent({
         </LayFrame>
       </template>
     </router-view>
-
-    <!-- 页脚 -->
-    <LayFooter v-if="!hideFooter && !fixedHeader" />
   </section>
 </template>
 

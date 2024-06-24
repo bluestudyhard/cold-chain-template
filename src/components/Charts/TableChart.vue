@@ -72,42 +72,42 @@ watchEffect(async () => {
 </script>
 
 <template>
-  <div class="container">
-    <el-button>数据详情</el-button>
-    <el-dialog v-model="dialogVisible" width="70%" top="0">
-      <template #header>
-        <div class="flex justify-between">
-          <span>{{ overViewTitle }}数据概览</span>
-          <el-button>详细信息</el-button>
-        </div>
-      </template>
+  <el-dialog
+    v-model="dialogVisible"
+    width="70%" top="0"
+  >
+    <template #header>
+      <div class="flex justify-between">
+        <span>{{ overViewTitle }}数据概览</span>
+        <el-button>详细信息</el-button>
+      </div>
+    </template>
 
-      <div ref="chartRef" class="box-chart" />
+    <div ref="chartRef" class="box-chart" />
 
-      <span class="box-overView">
-        <el-table :data="dialogInfo" height="200px" border stripe>
-          <el-table-column prop="boxId" label="设备ID" />
-          <el-table-column prop="coord.boxName" label="设备位置" />
-          <!-- <el-table-column prop="value" label="设备值" /> -->
-          <el-table-column prop="battery" label="电量" />
-          <el-table-column prop="temperature" label="当前温度" />
-          <el-table-column prop="temperRange" label="适宜温度范围" />
-          <el-table-column prop="vaccineStatus" label="温度状态" />
+    <span class="box-overView">
+      <el-table :data="dialogInfo" height="200px" border stripe>
+        <el-table-column prop="boxId" label="设备ID" />
+        <el-table-column prop="coord.boxName" label="设备位置" />
+        <!-- <el-table-column prop="value" label="设备值" /> -->
+        <el-table-column prop="battery" label="电量" />
+        <el-table-column prop="temperature" label="当前温度" />
+        <el-table-column prop="temperRange" label="适宜温度范围" />
+        <el-table-column prop="vaccineStatus" label="温度状态" />
 
-          <!-- 按钮 -->
-          <el-table-column
-            fixed="right"
-            label="Operations"
-            width="120"
-          >
-            <template #default>
-              <el-button type="primary" size="small">实时位置</el-button>
-            </template>
-          </el-table-column>
-        </el-table>
-      </span>
-    </el-dialog>
-  </div>
+        <!-- 按钮 -->
+        <el-table-column
+          fixed="right"
+          label="Operations"
+          width="120"
+        >
+          <template #default>
+            <el-button type="primary" size="small">实时位置</el-button>
+          </template>
+        </el-table-column>
+      </el-table>
+    </span>
+  </el-dialog>
 </template>
 
 <style scoped lang="scss">

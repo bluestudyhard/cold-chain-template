@@ -15,17 +15,6 @@ const store = useOverViewStore()
 
 const temperatureRange = ref<[number, number]>([2, 8])
 
-function getTemperatureThresholds() {
-  const temperatures = store.vaccines.map(vaccine => [Number.parseFloat(vaccine.low), Number.parseFloat(vaccine.high)])
-  const minTemp = Math.min(...temperatures.flat())
-  const maxTemp = Math.max(...temperatures.flat())
-  return [minTemp, maxTemp] as [number, number]
-}
-
-temperatureRange.value = getTemperatureThresholds()
-
-console.log(temperatureRange.value)
-
 watchEffect(() => {
   setOptions({
     backgroundColor: '#fff',
@@ -71,11 +60,8 @@ watchEffect(() => {
         value: Number.parseFloat(item.high),
       })),
       itemStyle: {
-        // 每一列颜色不同
         color(params) {
-          // 预定义一个颜色数组
           const colors = ['#5470C6', '#91CC75', '#EE6666', '#73C0DE', '#3BA272', '#FC8452', '#9A60B4', '#EA7CCC']
-          // 根据条形图项的索引返回颜色，使用模运算确保颜色数组循环使用
           return colors[params.dataIndex % colors.length]
         },
       },
@@ -93,12 +79,17 @@ watchEffect(() => {
 </script>
 
 <template>
-  <div ref="lineChart" class="line-chart" />
+  <div
+    class="bg-white shadow-md py-4 rounded-lg absolute bottom-0 left-0"
+  >
+    <div ref="lineChart" class="main" />
+  </div>
 </template>
 
 <style scoped lang="scss">
-.line-chart {
-  width: 100%;
-  height: 40vh;
+.main {
+  z-index: 10;
+  width: 24rem;
+  height: 20rem;
 }
 </style>
