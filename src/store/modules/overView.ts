@@ -112,6 +112,7 @@ export const useOverViewStore = defineStore('chain-cold-overView', () => {
     return { normal, abnormal, total }
   })
 
+  const isSub = ref(false)
   async function init() {
     if (initData.value.vaccines.length > 0)
       return
@@ -121,9 +122,8 @@ export const useOverViewStore = defineStore('chain-cold-overView', () => {
 
     // const boxMessages = await fetchBoxMessages()
     // await setBoxMessageData(boxMessages)
+    subcribeBoxMessage()
   }
-
-  const isSub = ref(false)
   /**
    * 订阅箱子消息，实时更新地图数据
    */

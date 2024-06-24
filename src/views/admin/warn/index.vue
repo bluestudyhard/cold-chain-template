@@ -69,7 +69,6 @@ watch(store.warningData, async () => {
 
 onMounted(async () => {
   await overViewStore.init()
-  overViewStore.subcribeBoxMessage()
 })
 </script>
 

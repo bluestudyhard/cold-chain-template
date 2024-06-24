@@ -5,18 +5,23 @@
  * index.vue
 -->
 <script setup lang="ts">
+import { ElMessage } from 'element-plus'
 import { useOverViewStore } from '@/store/modules/overView'
 
 const overView = useOverViewStore()
-const vaccines = ref<{
+interface VaccineData {
   id: string
   name: string
-  threshold: string
-  count: number
-}[]>([])
+  low: string
+  high: string
+}
+const vaccines = ref<VaccineData[]>([])
 
 const options = {
   index: true,
+  delBtn: false,
+  addBtn: false,
+  dialogClickModal: true,
   align: 'center',
   menuAlign: 'center',
   column: [{
@@ -57,6 +62,27 @@ function onLoadPatchesData(page: page) {
   page.total = overView.vaccines.length
 }
 
+function onUpdate(newData: VaccineData) {
+  const idx = overView.vaccines.findIndex(v => v.id === newData.id)
+
+  if (idx === -1) {
+    ElMessage.error('未找到该疫苗')
+    return false
+  }
+
+  overView.vaccines[idx] = newData
+  ElMessage.success('更新成功')
+
+  onLoadPatchesData({
+    pageSize: 10,
+    pagerCount: 5,
+    currentPage: 1,
+    total: 0,
+  })
+
+  return true
+}
+
 onMounted(async () => {
   await overView.init()
 
@@ -75,6 +101,7 @@ onMounted(async () => {
       :option="options"
       :data="vaccines"
       @on-load="onLoadPatchesData"
+      @row-update="onUpdate"
     />
   </div>
 </template>

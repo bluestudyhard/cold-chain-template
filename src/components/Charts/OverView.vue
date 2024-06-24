@@ -128,8 +128,6 @@ watchEffect(() => {
 
 onMounted(async () => {
   await store.init()
-
-  store.subcribeBoxMessage()
 })
 
 onUnmounted(() => {

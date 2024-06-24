@@ -5,7 +5,7 @@
  * index.vue
 -->
 <script setup lang="ts">
-import { useManageStore } from '@/store/modules/management'
+import { ElMessage } from 'element-plus'
 import { useOverViewStore } from '@/store/modules/overView'
 import {
   BoxPatchData,
@@ -14,12 +14,11 @@ import {
 const BoxesData = ref<BoxPatchData[]>([])
 
 const overView = useOverViewStore()
-const store = useManageStore()
-
-const currentPage = ref(1)
-
 const options = {
   index: true,
+  delBtn: false,
+  addBtn: false,
+  dialogClickModal: true,
   align: 'center',
   menuAlign: 'center',
   column: [{
@@ -64,6 +63,13 @@ function onLoadPatchesData(page: page) {
   page.total = overView.initData.boxes.length
 }
 
+function onUpdate(data: BoxPatchData) {
+  console.log('update', data)
+  setTimeout(() => {
+    ElMessage.success('更新成功')
+  }, 1000)
+}
+
 onMounted(async () => {
   await overView.init()
 
@@ -82,6 +88,7 @@ onMounted(async () => {
       :option="options"
       :data="BoxesData"
       @on-load="onLoadPatchesData"
+      @row-update="onUpdate"
     />
   </div>
 </template>
