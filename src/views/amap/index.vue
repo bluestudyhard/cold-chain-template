@@ -20,6 +20,13 @@ if (params.startPosition && params.endPosition) {
 if (params.carPosition) {
   carPosition.value = (params.carPostion as any)?.split(',')
 }
+
+onMounted(() => {
+  if (!params.startPosition || !params.endPosition) {
+    params.starPosition = path.value[0].join(',')
+    params.endPosition = path.value[1].join(',')
+  }
+})
 </script>
 
 <template>
