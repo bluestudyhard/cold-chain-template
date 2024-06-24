@@ -45,7 +45,6 @@ const isZoomMapToCar = computed({
   get() {
     if (!map.value)
       return false
-    console.log('map.value.getZoom()', map.value.getZoom())
     return map.value.getZoom() > MAP_ZOOM
   },
   set: (value) => {

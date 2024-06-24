@@ -50,7 +50,7 @@ export const useOverViewStore = defineStore('chain-cold-overView', () => {
 
     overViewMapsData.value = tmpMap
 
-    console.log({ cityData })
+    // console.log({ cityData })
   }
 
   async function getMapData(item: BoxMessages) {
@@ -73,7 +73,7 @@ export const useOverViewStore = defineStore('chain-cold-overView', () => {
       },
       battery: item.battery,
       temperature: item.temperature,
-      statusColor: vaccineStatus === '正常' ? '#22c55e' : '#dc2626',
+      statusColor: getStatusColor(vaccineStatus),
       vaccineStatus,
       temperRange: `${vaccine.low}℃ ~ ${vaccine.high}℃`,
     }
