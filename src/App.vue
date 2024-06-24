@@ -1,24 +1,11 @@
-<script lang="ts">
-import { defineComponent } from 'vue'
+<script lang="ts" setup>
 import { ElConfigProvider } from 'element-plus'
 import zhCn from 'element-plus/es/locale/lang/zh-cn'
-
-export default defineComponent({
-  name: 'App',
-  components: {
-    [ElConfigProvider.name]: ElConfigProvider,
-  },
-  computed: {
-    currentLocale() {
-      return zhCn
-    },
-  },
-})
 </script>
 
 <template>
-  <el-config-provider :locale="currentLocale">
+  <ElConfigProvider :locale="zhCn">
     <router-view />
     <!-- <ReDialog /> -->
-  </el-config-provider>
+  </ElConfigProvider>
 </template>

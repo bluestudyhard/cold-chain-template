@@ -93,11 +93,14 @@ export const useOverViewStore = defineStore('chain-cold-overView', () => {
   }
 
   async function init() {
+    if (initData.value.vaccines.length > 0)
+      return
+
     await getInitData()
     vaccines.value = initData.value.vaccines
 
-    const boxMessages = await fetchBoxMessages()
-    await setBoxMessageData(boxMessages)
+    // const boxMessages = await fetchBoxMessages()
+    // await setBoxMessageData(boxMessages)
   }
 
   /**
@@ -113,6 +116,7 @@ export const useOverViewStore = defineStore('chain-cold-overView', () => {
     cityData,
     overViewMapsData,
     vaccines,
+    initData,
   }
 }, {
   // persist: true,

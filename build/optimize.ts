@@ -18,6 +18,7 @@ const include = [
   '@vueuse/core',
   '@pureadmin/utils',
   'responsive-storage',
+  'p-queue',
 ]
 
 /**

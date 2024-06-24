@@ -28,10 +28,12 @@
   "dependencies": {
     "@amap/amap-jsapi-loader": "^1.0.1",
     "@amap/amap-jsapi-types": "^0.0.15",
+    "@kjgl77/datav-vue3": "^1.7.3",
     "@microsoft/fetch-event-source": "^2.0.1",
     "@pureadmin/descriptions": "^1.2.1",
     "@pureadmin/table": "^3.1.2",
     "@pureadmin/utils": "^2.4.7",
+    "@smallwei/avue": "^3.4.6",
     "@vueuse/core": "^10.10.0",
     "@vueuse/motion": "^2.2.3",
     "animate.css": "^4.1.1",
