@@ -23,6 +23,14 @@ watchEffect(() => {
     return
 
   setOptions({
+    title: {
+      text: '全国冷链设备概览',
+      left: 'center',
+      textStyle: {
+        color: '#6981CD',
+        fontSize: 24,
+      },
+    },
     backgroundColor: 'transparent', // 设置背景色透明
     // 必须设置
     tooltip: {
@@ -51,10 +59,12 @@ watchEffect(() => {
       top: '0%',
       left: 'center',
       aspectScale: 0.75,
-      roam: 'scale', // 地图缩放和平移
+      roam: false, // 地图缩放和平移
       itemStyle: {
         borderColor: '#D5DAE9', // 省分界线颜色  阴影效果的
-        borderWidth: 1,
+        borderWidth: 0.5,
+        areaColor: '#4280C7',
+        opacity: 1,
       },
       // 去除选中状态
       select: {
@@ -62,7 +72,7 @@ watchEffect(() => {
       },
       // 控制鼠标悬浮上去的效果
       emphasis: {
-        // 聚焦后颜色
+      // 聚焦后颜色
         disabled: false, // 开启高亮
         label: {
           align: 'center',
@@ -126,15 +136,60 @@ onMounted(async () => {
 onUnmounted(() => {
   chartRef.value = null
 })
+
+const dataScrollConfig = reactive({
+  header: ['列1', '列2', '列3'],
+  data: [
+    ['行1列1', '行1列2', '行1列3', '行1列4', 'hang', 'hangs', 'hang'],
+    ['行2列1', '行2列2', '行2列3'],
+    ['行3列1', '行3列2', '行3列3'],
+    ['行4列1', '行4列2', '行4列3'],
+    ['行5列1', '行5列2', '行5列3'],
+    ['行6列1', '行6列2', '行6列3'],
+    ['行7列1', '行7列2', '行7列3'],
+    ['行8列1', '行8列2', '行8列3'],
+    ['行9列1', '行9列2', '行9列3'],
+    ['行10列1', '行10列2', '行10列3'],
+  ],
+  index: true,
+  columnWidth: [50],
+  align: ['center'],
+  haderBGC: '#f5f7fa',
+  headerHeight: 40,
+
+})
 </script>
 
 <template>
-  <div class="container">
-    <div ref="chartRef" style="width: 100%; height: 90vh" />
+  <div class="container relative">
+    <div ref="chartRef" style="z-index: 10;width: 100%; height: 100vh;" />
     <TableChart
       v-model="dialogVisible"
       :over-view-title="overViewTitle"
       :dialog-info="dialogInfo"
     />
+    <line-chart class="line-chart" />
+
+    <dv-scroll-board :config="dataScrollConfig" class="dv-scroll-board" />
   </div>
 </template>
+
+<style scoped lang="scss">
+.line-chart {
+  position: absolute;
+  top: 0;
+  z-index: 10;
+  width:20vw;
+  height: 40vh;
+}
+
+.dv-scroll-board {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 10;
+  width: 20vw;
+  height: 40vh;
+  margin: 0 4rem;
+}
+</style>

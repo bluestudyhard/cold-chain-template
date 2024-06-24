@@ -2,6 +2,14 @@ import { MotionPlugin } from '@vueuse/motion'
 import { type Directive, createApp } from 'vue'
 import Table from '@pureadmin/table'
 import * as echarts from 'echarts'
+
+/**
+ * 引入avue
+ */
+import Avue from '@smallwei/avue'
+import DataVVue3 from '@kjgl77/datav-vue3'
+import '@smallwei/avue/lib/index.css'
+
 import VueTippy from 'vue-tippy'
 import App from './App.vue'
 import router from './router'
@@ -15,7 +23,6 @@ import { setupStore } from '@/store'
 // import { useEcharts } from "@/plugins/echarts";
 import { useElementPlus } from '@/plugins/elementPlus'
 import { injectResponsiveStorage } from '@/utils/responsive'
-
 // import PureDescriptions from "@pureadmin/descriptions";
 // 引入重置样式
 import './style/reset.scss'
@@ -49,6 +56,10 @@ app.component('IconifyIconOnline', IconifyIconOnline)
 app.component('FontIcon', FontIcon)
 app.component('Auth', Auth)
 app.use(VueTippy)
+
+app.use(DataVVue3)
+app.use(Avue)
+
 // 引入echarts 然后可以在组件种使用useEcharts方法
 app.config.globalProperties.$echarts = echarts
 getPlatformConfig(app).then(async (config) => {
