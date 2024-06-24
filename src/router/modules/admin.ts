@@ -17,15 +17,6 @@ export default {
       component: () => import('@/views/admin/device/index.vue'),
     },
     {
-      path: '/admin/health',
-      name: 'AdminHealth',
-      meta: {
-        title: '设备健康',
-        roles: ['admin'],
-      },
-      component: () => import('@/views/admin/health/index.vue'),
-    },
-    {
       path: '/admin/warn',
       name: 'AdminWarn',
       meta: {

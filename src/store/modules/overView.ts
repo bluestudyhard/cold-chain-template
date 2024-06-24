@@ -91,6 +91,24 @@ export const useOverViewStore = defineStore('chain-cold-overView', () => {
       return '温度过高'
     return '正常'
   }
+  function getStatusColor(status: string) {
+    if (status === '正常')
+      return '#22c55e'
+    return '#dc2626'
+  }
+
+  interface StatusCount {
+    normal: number
+    abnormal: number
+    total: number
+  }
+
+  const statusCount = computed<StatusCount>(() => {
+    const normal = overViewMapsData.value.filter(m => m.vaccineStatus === '正常').length
+    const abnormal = overViewMapsData.value.filter(m => m.vaccineStatus !== '正常').length
+    const total = overViewMapsData.value.length
+    return { normal, abnormal, total }
+  })
 
   async function init() {
     if (initData.value.vaccines.length > 0)
@@ -113,9 +131,11 @@ export const useOverViewStore = defineStore('chain-cold-overView', () => {
   return {
     init,
     subcribeBoxMessage,
+    getStatus,
     cityData,
     overViewMapsData,
     vaccines,
+    statusCount,
     initData,
   }
 }, {
