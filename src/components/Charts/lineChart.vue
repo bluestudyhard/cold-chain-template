@@ -6,7 +6,6 @@
 -->
 <script setup lang="ts">
 import { useECharts } from '@pureadmin/utils'
-import { VaccineData } from '@/types/index'
 import { useOverViewStore } from '@/store/modules/overView'
 
 const lineChart = ref<HTMLDivElement | null>(null)

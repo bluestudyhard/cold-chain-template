@@ -1,3 +1,4 @@
+/* eslint-disable */
 <!--
  * new page
  * @author: blue
@@ -121,7 +122,7 @@ watchEffect(() => {
         item => item.provinceName === params.name,
       )
 
-      // console.log(toRaw(dialogInfo.value), 'dialogInfo')
+      console.log(toRaw(dialogInfo.value), 'dialogInfo')
     },
   })
 })
@@ -149,8 +150,9 @@ onUnmounted(() => {
     />
 
     <VaccineStatus />
-
-    <!-- <line-chart /> -->
+    <BoxError />
+    <!-- <line-chart
+    /> -->
   </div>
 </template>
 

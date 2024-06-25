@@ -8,6 +8,7 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     AmapContainer: typeof import('./../src/components/Amaps/AmapContainer.vue')['default']
+    BoxError: typeof import('./../src/components/Charts/BoxError.vue')['default']
     LineChart: typeof import('./../src/components/Charts/lineChart.vue')['default']
     OverView: typeof import('./../src/components/Charts/OverView.vue')['default']
     ReDialog: typeof import('./../src/components/ReDialog/index.vue')['default']
