@@ -5,7 +5,8 @@
  * index.vue
 -->
 <script setup lang="ts">
-import { ElMessage } from 'element-plus'
+import { ElMessage, ElMessageBox } from 'element-plus'
+import { useManageStore } from '@/store/modules/management'
 import { useOverViewStore } from '@/store/modules/overView'
 import {
   BoxPatchData,
@@ -14,11 +15,12 @@ import {
 const BoxesData = ref<BoxPatchData[]>([])
 
 const overView = useOverViewStore()
+const store = useManageStore()
+
+const currentPage = ref(1)
+
 const options = {
   index: true,
-  delBtn: false,
-  addBtn: false,
-  dialogClickModal: true,
   align: 'center',
   menuAlign: 'center',
   column: [{
@@ -62,12 +64,22 @@ function onLoadPatchesData(page: page) {
     }))
   page.total = overView.initData.boxes.length
 }
-
-function onUpdate(data: BoxPatchData) {
-  console.log('update', data)
-  setTimeout(() => {
-    ElMessage.success('更新成功')
-  }, 1000)
+function rowSave(row, done, loading) {
+  done(row)
+  ElMessage.success('保存成功')
+}
+function rowDel(row, index, done) {
+  ElMessageBox.confirm('此操作将永久删除该批次, 是否继续?', '提示', {
+    confirmButtonText: '确定',
+    cancelButtonText: '取消',
+    type: 'warning',
+  }).then(() => {
+    done(row)
+  }).catch(() => {})
+}
+function rowUpdate(row, index, done, loading) {
+  done(row)
+  ElMessage.success('更新成功')
 }
 
 onMounted(async () => {
@@ -83,12 +95,16 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="container">
+  <div class="container ">
     <avue-crud
       :option="options"
       :data="BoxesData"
+      height="auto"
+      menu-width="100"
       @on-load="onLoadPatchesData"
-      @row-update="onUpdate"
+      @row-save="rowSave"
+      @row-del="rowDel"
+      @row-update="rowUpdate"
     />
   </div>
 </template>

@@ -17,7 +17,7 @@ export default {
       name: 'dashboard',
       component: () => import('@/views/dashboard/index.vue'),
       meta: {
-        title: '管理页面',
+        title: '数据大屏',
         showLink: VITE_HIDE_HOME !== 'true',
       },
     },
